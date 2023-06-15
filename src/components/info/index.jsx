@@ -5,42 +5,82 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { Context } from '../../provider';
-import { useContext, useState } from 'react';
-import { FormControlLabel, Radio, RadioGroup, TextField } from '@mui/material';
+import { useContext, useEffect, useState } from 'react';
+import { Button, FormControlLabel, Radio, RadioGroup, TextField } from '@mui/material';
+import { getDigimonService } from '../../service/getDigimon';
 
 export function InfoComponent() {
 
+
+
+
     const { cardType, setCardType, setCardValue } = useContext(Context);
 
+
+
     const [cardData, setCardData] = useState({
-        name: 'AeroVeedramon',
-        dp: 7,
-        play_cost: 8,
-        evolution_cost: 3,
+        name: '',
+        dp: '',
+        play_cost: '',
+        evolution_cost: '',
         requirements: '',
+        level: '',
+        stage: '',
+        attribute: '',
         cardEffect: '',
-        cardnumber: 'EX3-033',
-        level: 5,
-        stage: 'Ultimate',
-        attribute: 'Vaccine',
-        digi_type: 'Holy Dragon',
-        inheritedEffect: '',
-        url: '',
-        fontSize: 'Black',
-        color: 'Yellow'
+        cardnumber: '',
+        digi_type: '',
+        soureeffect: '',
+        type: '',
+        color: '',
+        url: 'https://images.digimoncard.io/images/card-creator/card/common_red_digi.png'
     });
 
-    const handleChange = (event) => {
-        setCardType(event.target.value);
-    };
 
     const handleChangeCardData = (event) => {
         const { name, value } = event.target;
         const updatedCardData = { ...cardData, [name]: value };
         setCardData(updatedCardData);
-        setCardValue(updatedCardData);
+        setCardValue((prevCardValue) => ({
+            ...prevCardValue,
+            [name]: value
+        }));
     };
 
+    async function getDigimon(code) {
+        try {
+            const response = await getDigimonService(code);
+            const digimonData = response.data[0];
+
+            setCardData((prevCardValue) => ({
+                ...prevCardValue,
+                name: digimonData.name,
+                color: digimonData.color,
+                dp: digimonData.dp,
+                play_cost: digimonData.play_cost,
+                evolution_cost: digimonData.evolution_cost,
+                level: digimonData.level,
+                cardEffect: digimonData.maineffect || '',
+                soureeffect: digimonData.soureeffect || '',
+                attribute: digimonData.attribute,
+                type: digimonData.type,
+                stage: digimonData.stage,
+                digi_type: digimonData.digi_type,
+                url: 'https://images.digimoncard.io/images/card-creator/card/common_red_digi.png'
+            }));
+            setCardValue(cardData)
+            console.log({
+                response: digimonData,
+                data: cardData
+            })
+        } catch (error) {
+            console.error(error.response.data);
+        }
+    }
+
+    useEffect(() => {
+        setCardValue(cardData)
+    }, [cardData])
 
 
     return (
@@ -54,61 +94,36 @@ export function InfoComponent() {
             padding: '10px'
         }}>
             {/* Tipo de card */}
-            <Box sx={{ minWidth: 120, height: 'auto' }}>
+
+            <Box sx={{ minWidth: 300, height: 'auto' }}>
                 <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">Card Type</InputLabel>
-                    <Select
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        value={cardType}
-                        label="Age"
-                        onChange={handleChange}
-                        style={{ margin: '5px' }}
-                    >
-                        <MenuItem value={'digimonRed'}>Digimon Red</MenuItem>
-                        <MenuItem value={'digimonBlue'}>Digimon Blue</MenuItem>
-                        <MenuItem value={'digimonYellow'}>Digimon Yellow</MenuItem>
-                    </Select>
+                    <TextField id="outlined-basic" label="Effect" variant="outlined" fullWidth style={{ margin: '5px' }} onChange={handleChangeCardData} name='cardEffect' />
+
+                    <TextField id="outlined-basic" label="Inherited Effect" variant="outlined" fullWidth style={{ margin: '5px' }} onChange={handleChangeCardData} name='soureeffect' />
+
+                    <TextField id="outlined-basic" label="Img Url" variant="outlined" fullWidth style={{ margin: '5px' }} onChange={handleChangeCardData} name='url' />
+                </FormControl>
+                <FormControl fullWidth>
+                    <h4>Digite o Codigo do Digimon para buscar seus dados</h4>
+                    <TextField id="outlined-basic" label="Card Number" variant="outlined" style={{ margin: '5px' }} onChange={handleChangeCardData} name='cardnumber' />
+                    <Button variant="contained" onClick={() => getDigimon(cardData.cardnumber)}>Buscar</Button>
+
+                    <TextField
+                        id="outlined-multiline-flexible"
+                        multiline
+                        name='effect'
+                        value={cardData.cardEffect}
+                    />
+                    <TextField
+                        id="outlined-multiline-flexible"
+                        label="Efeito Legado"
+                        multiline
+
+                        name='soureeffect'
+                        value={cardData.soureeffect}
+                    />
                 </FormControl>
 
-                {/* Nome do Card */}
-                <TextField id="outlined-basic" label="Name" variant="outlined" fullWidth style={{ margin: '5px' }} onChange={handleChangeCardData} name='name' />
-                <RadioGroup
-                    row
-                    aria-labelledby="demo-row-radio-buttons-group-label"
-                    name="fontSize"
-                    onChange={handleChangeCardData}
-                >
-                    <FormControlLabel value="white" control={<Radio />} label="Branco" />
-                    <FormControlLabel value="black" control={<Radio />} label="Preto" />
-
-                </RadioGroup>
-
-                <TextField id="outlined-basic" label="Play Cost" variant="outlined" style={{ margin: '5px' }} onChange={handleChangeCardData} name='playCost' />
-
-                <TextField id="outlined-basic" label="Batle Points" variant="outlined" style={{ margin: '5px' }} onChange={handleChangeCardData} name='DP' />
-
-                <TextField id="outlined-basic" label="Digivolution Cost Level" variant="outlined" style={{ margin: '5px' }} onChange={handleChangeCardData} name='costLevel' />
-
-                <TextField id="outlined-basic" label="Digivolution Cost" variant="outlined" style={{ margin: '5px' }} onChange={handleChangeCardData} name='digivolutionCost' />
-
-                <TextField id="outlined-basic" label="Digivolution Requirements" variant="outlined" fullWidth style={{ margin: '5px' }} onChange={handleChangeCardData} name='requirements' />
-
-                <TextField id="outlined-basic" label="Card Effect(s)" variant="outlined" multiline fullWidth style={{ margin: '5px' }} onChange={handleChangeCardData} name='cardEffect' />
-
-                <TextField id="outlined-basic" label="Booster Set" variant="outlined" fullWidth style={{ margin: '5px' }} onChange={handleChangeCardData} name='boostSet' />
-
-                <TextField id="outlined-basic" label="Level" variant="outlined" style={{ margin: '5px' }} onChange={handleChangeCardData} name='level' />
-
-                <TextField id="outlined-basic" label="Form" variant="outlined" style={{ margin: '5px' }} onChange={handleChangeCardData} name='form' />
-
-                <TextField id="outlined-basic" label="Attribute" variant="outlined" style={{ margin: '5px' }} onChange={handleChangeCardData} name='attribute' />
-
-                <TextField id="outlined-basic" label="Type" variant="outlined" style={{ margin: '5px' }} onChange={handleChangeCardData} name='type' />
-
-                <TextField id="outlined-basic" label="Inherited Effect" variant="outlined" fullWidth style={{ margin: '5px' }} onChange={handleChangeCardData} name='inheritedEffect' />
-
-                <TextField id="outlined-basic" label="Img Url" variant="outlined" fullWidth style={{ margin: '5px' }} onChange={handleChangeCardData} name='url' />
 
 
             </Box>
