@@ -13,21 +13,21 @@ export function InfoComponent() {
     const { cardType, setCardType, setCardValue } = useContext(Context);
 
     const [cardData, setCardData] = useState({
-        name: '',
-        playCost: '',
-        DP: '',
-        costLevel: '',
-        digivolutionCost: '',
+        name: 'AeroVeedramon',
+        dp: 7,
+        play_cost: 8,
+        evolution_cost: 3,
         requirements: '',
         cardEffect: '',
-        boostSet: '',
-        level: '',
-        form: '',
-        attribute: '',
-        type: '',
+        cardnumber: 'EX3-033',
+        level: 5,
+        stage: 'Ultimate',
+        attribute: 'Vaccine',
+        digi_type: 'Holy Dragon',
         inheritedEffect: '',
         url: '',
         fontSize: 'Black',
+        color: 'Yellow'
     });
 
     const handleChange = (event) => {
