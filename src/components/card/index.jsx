@@ -482,7 +482,7 @@ export function CardComponent() {
 
                     const cardsoureeffect = cardValue.soureeffect;
                     let cardsoureeffectX = canvas.width / 2; // Posição x do texto (centro do canvas)
-                    let cardsoureeffectY = 572; // Posição y do texto (centro do canvas)
+                    let cardsoureeffectY = 590; // Posição y do texto (centro do canvas)
                     let maxLineWidth = 360; // Largura máxima para cada linha de texto
                     const lineHeight = 16; // Altura da linha de texto
 
