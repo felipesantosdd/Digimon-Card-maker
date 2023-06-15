@@ -491,7 +491,7 @@ export function CardComponent() {
                         maxLineWidth = 300
                         cardsoureeffectY = 582
                     } else if (cardValue.type === "Digi-Egg") {
-                        cardsoureeffectY = 580
+                        cardsoureeffectY = 550
                     }
 
 
