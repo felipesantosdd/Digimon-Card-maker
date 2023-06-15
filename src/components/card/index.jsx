@@ -489,7 +489,7 @@ export function CardComponent() {
                     if (cardValue.type === "Tamer" || cardValue.type === "Option") {
                         cardsoureeffectX = 250
                         maxLineWidth = 300
-                        cardsoureeffectY = 582
+                        cardsoureeffectY = 542
                     } else if (cardValue.type === "Digi-Egg") {
                         cardsoureeffectY = 550
                     }
