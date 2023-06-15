@@ -1,15 +1,19 @@
-import { styled } from "styled-components";
+import { createGlobalStyle, styled } from "styled-components";
+
+export const Title = styled.h2`
+font-family: 'Digital', sans-serif;
+font-size: 16px;
+`
 
 export const Card = styled.div`
-
-  width: 430px;
-  height: 601px;
+  max-width: 430px;
+  max-width: 601px;
   text-align: center;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   img{
-    width: 100%;
+    width: 430px;
   }
 `;
 

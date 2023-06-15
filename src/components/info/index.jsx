@@ -6,7 +6,7 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { Context } from '../../provider';
 import { useContext, useState } from 'react';
-import { TextField } from '@mui/material';
+import { FormControlLabel, Radio, RadioGroup, TextField } from '@mui/material';
 
 export function InfoComponent() {
 
@@ -26,7 +26,8 @@ export function InfoComponent() {
         attribute: '',
         type: '',
         inheritedEffect: '',
-        url: ''
+        url: '',
+        fontSize: 'Black',
     });
 
     const handleChange = (event) => {
@@ -39,6 +40,8 @@ export function InfoComponent() {
         setCardData(updatedCardData);
         setCardValue(updatedCardData);
     };
+
+
 
     return (
         <div style={{
@@ -70,6 +73,16 @@ export function InfoComponent() {
 
                 {/* Nome do Card */}
                 <TextField id="outlined-basic" label="Name" variant="outlined" fullWidth style={{ margin: '5px' }} onChange={handleChangeCardData} name='name' />
+                <RadioGroup
+                    row
+                    aria-labelledby="demo-row-radio-buttons-group-label"
+                    name="fontSize"
+                    onChange={handleChangeCardData}
+                >
+                    <FormControlLabel value="white" control={<Radio />} label="Branco" />
+                    <FormControlLabel value="black" control={<Radio />} label="Preto" />
+
+                </RadioGroup>
 
                 <TextField id="outlined-basic" label="Play Cost" variant="outlined" style={{ margin: '5px' }} onChange={handleChangeCardData} name='playCost' />
 
@@ -81,7 +94,7 @@ export function InfoComponent() {
 
                 <TextField id="outlined-basic" label="Digivolution Requirements" variant="outlined" fullWidth style={{ margin: '5px' }} onChange={handleChangeCardData} name='requirements' />
 
-                <TextField id="outlined-basic" label="Card Effect(s)" variant="outlined" fullWidth style={{ margin: '5px' }} onChange={handleChangeCardData} name='cardEffect' />
+                <TextField id="outlined-basic" label="Card Effect(s)" variant="outlined" multiline fullWidth style={{ margin: '5px' }} onChange={handleChangeCardData} name='cardEffect' />
 
                 <TextField id="outlined-basic" label="Booster Set" variant="outlined" fullWidth style={{ margin: '5px' }} onChange={handleChangeCardData} name='boostSet' />
 

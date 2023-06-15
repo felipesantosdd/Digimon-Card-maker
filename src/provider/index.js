@@ -19,7 +19,8 @@ export function Provider({ children }) {
         attribute: '',
         type: '',
         inheritedEffect: '',
-        url: ''
+        url: '',
+        fontSize: ''
     })
 
     return (
