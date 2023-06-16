@@ -297,22 +297,29 @@ export function CardComponent() {
                 lines.push(line.trim());
 
                 // Posição da base do texto fornecida por você (ajuste conforme necessário)
-                let basePositionY = 0
+                let basePositionY = 0;
                 switch (cardValue.stage) {
-                    case "Mega": basePositionY = 510;
+                    case "Mega":
+                        basePositionY = 510;
                         break;
                     default:
                         basePositionY = 440;
-                        break
+                        break;
                 }
 
                 if (cardValue.type === "Tamer" || cardValue.type === "Option") {
-                    basePositionY = 405;
+                    basePositionY = 415;
                 }
 
-                // Ajustar a posição y do texto para alinhar por baixo
+                // Ajustar a posição y do texto para alinhar por cima ou por baixo
                 const cardEffectHeight = lines.length * lineHeight;
-                const cardEffectY = basePositionY - cardEffectHeight;
+                let cardEffectY = 315
+
+                if (cardValue.type === "Tamer" || cardValue.type === "Option") {
+                    cardEffectY = cardEffectY += lineHeight;
+                } else {
+                    cardEffectY += lineHeight; // Alinhar por baixo
+                }
 
                 if (cardEffect.trim() !== "") {
                     // Calcular as dimensões do background
@@ -334,6 +341,7 @@ export function CardComponent() {
                         context.fillText(text, cardEffectX, lineY);
                     });
                 }
+
 
                 // Card Name
                 context.font = "20px Arial"; // Estilo da fonte e tamanho
@@ -519,7 +527,7 @@ export function CardComponent() {
 
                     // Ajustar a posição y do texto para alinhar por baixo
                     const cardEffectHeight = lines.length * lineHeight;
-                    const cardEffectY = basePositionY - cardEffectHeight - 10;
+                    const cardEffectY = 500;
 
                     // Desenhar o texto
                     if (cardValue.color === "Yellow") {
