@@ -468,7 +468,7 @@ export function CardComponent() {
                     context.font = "30px Helvetica";
                     context.textAlign = "center";
                     context.fillStyle = "#ffffff";
-                    context.strokeStyle = "#000";
+                    context.strokeStyle = "#0000002f";
                     context.lineWidth = 2;
                     context.strokeText(level, levelX, levelY);
                     context.fillText(level, levelX, levelY);
@@ -489,9 +489,9 @@ export function CardComponent() {
                     if (cardValue.type === "Tamer" || cardValue.type === "Option") {
                         cardsoureeffectX = 250
                         maxLineWidth = 300
-                        cardsoureeffectY = 542
+                        cardsoureeffectY = 568
                     } else if (cardValue.type === "Digi-Egg") {
-                        cardsoureeffectY = 550
+                        cardsoureeffectY = 560
                     }
 
 

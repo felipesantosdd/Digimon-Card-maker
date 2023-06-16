@@ -104,7 +104,7 @@ export function InfoComponent() {
                     <TextField id="outlined-basic" label="Img Url" variant="outlined" fullWidth style={{ margin: '5px' }} onChange={handleChangeCardData} name='url' />
                 </FormControl>
                 <FormControl fullWidth>
-                    <h4>Digite o Codigo do Digimon para buscar seus dados</h4>
+
                     <TextField id="outlined-basic" label="Card Number" variant="outlined" style={{ margin: '5px' }} onChange={handleChangeCardData} name='cardnumber' />
                     <Button variant="contained" onClick={() => getDigimon(cardData.cardnumber)}>Buscar</Button>
 
