@@ -323,8 +323,12 @@ export function CardComponent() {
 
                 if (cardEffect.trim() !== "") {
                     // Calcular as dimensões do background
-                    const backgroundWidth = maxLineWidth;
-                    const backgroundHeight = cardEffectHeight + lineHeight;
+                    let backgroundWidth = maxLineWidth;
+                    let backgroundHeight = cardEffectHeight + lineHeight;
+
+                    if (cardValue.type === "Tamer" || cardValue.type === "Option") {
+                        backgroundHeight = 100
+                    }
 
                     // Desenhar o background com efeito de desfoque
                     const backgroundX = cardEffectX - backgroundWidth / 2;
