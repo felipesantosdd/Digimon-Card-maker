@@ -6,8 +6,11 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { Context } from '../../provider';
 import { useContext, useEffect, useState } from 'react';
-import { Button, FormControlLabel, Radio, RadioGroup, TextField } from '@mui/material';
+import {
+    Button, FormControlLabel, FormLabel, Radio, RadioGroup, TextField
+} from '@mui/material';
 import { getDigimonService } from '../../service/getDigimon';
+import { Container, Options } from './styled.js';
 
 export function InfoComponent() {
 
@@ -20,11 +23,11 @@ export function InfoComponent() {
 
     const [cardData, setCardData] = useState({
         name: '',
-        dp: '',
-        play_cost: '',
-        evolution_cost: '',
-        requirements: '',
-        level: '',
+        dp: 0,
+        play_cost: 0,
+        evolution_cost: 0,
+        requirements: 0,
+        level: 0,
         stage: '',
         attribute: '',
         cardEffect: '',
@@ -33,6 +36,7 @@ export function InfoComponent() {
         soureeffect: '',
         type: '',
         color: '',
+        digimon_level_cost: 0,
         url: 'https://images.digimoncard.io/images/card-creator/card/common_red_digi.png'
     });
 
@@ -44,12 +48,15 @@ export function InfoComponent() {
         setCardValue((prevCardValue) => ({
             ...prevCardValue,
             [name]: value
+
         }));
+
     };
 
     async function getDigimon(code) {
+
         try {
-            const response = await getDigimonService(code);
+            const response = await getDigimonService(code.target.value);
             const digimonData = response.data[0];
 
             setCardData((prevCardValue) => ({
@@ -62,12 +69,15 @@ export function InfoComponent() {
                 level: digimonData.level,
                 cardEffect: digimonData.maineffect || '',
                 soureeffect: digimonData.soureeffect || '',
+                cardnumber: digimonData.cardnumber,
                 attribute: digimonData.attribute,
                 type: digimonData.type,
                 stage: digimonData.stage,
                 digi_type: digimonData.digi_type,
+                digimon_level_cost: digimonData.level - 1,
                 url: 'https://images.digimoncard.io/images/card-creator/card/common_red_digi.png'
             }));
+
             setCardValue(cardData)
             console.log({
                 response: digimonData,
@@ -93,40 +103,197 @@ export function InfoComponent() {
             justifyContent: 'space-between',
             padding: '10px'
         }}>
-            {/* Tipo de card */}
+            <Container>
+                <Options>
 
-            <Box sx={{ minWidth: 300, height: 'auto' }}>
-                <FormControl fullWidth>
-                    <TextField id="outlined-basic" label="Effect" variant="outlined" fullWidth style={{ margin: '5px' }} onChange={handleChangeCardData} name='cardEffect' />
-
-                    <TextField id="outlined-basic" label="Inherited Effect" variant="outlined" fullWidth style={{ margin: '5px' }} onChange={handleChangeCardData} name='soureeffect' />
-
-                    <TextField id="outlined-basic" label="Img Url" variant="outlined" fullWidth style={{ margin: '5px' }} onChange={handleChangeCardData} name='url' />
-                </FormControl>
-                <FormControl fullWidth>
-
-                    <TextField id="outlined-basic" label="Card Number" variant="outlined" style={{ margin: '5px' }} onChange={handleChangeCardData} name='cardnumber' />
-                    <Button variant="contained" onClick={() => getDigimon(cardData.cardnumber)}>Buscar</Button>
+                    <Select
+                        label="Tipo de Card"
+                        defaultValue={'Digimon'}
+                        onChange={(event) => handleChangeCardData(event)}
+                        name='type'
+                        value={cardData.type}
+                    >
+                        <MenuItem value={'Digimon'}>Digimon</MenuItem>
+                        <MenuItem value={'Option'}>Option</MenuItem>
+                        <MenuItem value={'Tamer'}>Tamer</MenuItem>
+                        <MenuItem value={'Digi-Egg'}>Digi-Egg</MenuItem>
+                    </Select>
 
                     <TextField
-                        id="outlined-multiline-flexible"
-                        multiline
-                        name='effect'
-                        value={cardData.cardEffect}
+                        defaultValue={''}
+                        label="Codigo do Card"
+                        variant="standard"
+                        size="small"
+                        onChange={(event) => getDigimon(event)}
+                        style={{ width: '30%' }}
                     />
-                    <TextField
-                        id="outlined-multiline-flexible"
-                        label="Efeito Legado"
-                        multiline
+                </Options>
+                <div>
+                    <Box
+                        component="form"
+                        sx={{
+                            '& > :not(style)': { m: 1, width: '50ch' }
+                        }}
+                        noValidate
+                        autoComplete="off"
+                    >
+                        <RadioGroup
+                            row
+                            name="color"
+                            display="flex"
+                            onChange={(event) => handleChangeCardData(event)}
+                        >
+                            <FormControlLabel name='color' value="Black" control={<Radio />} label="Black" />
+                            <FormControlLabel name='color' value="Red" control={<Radio />} label="Red" />
+                            <FormControlLabel name='color' value="Yellow" control={<Radio />} label="Yellow" />
+                            <FormControlLabel name='color' value="Blue" control={<Radio />} label="Blue" />
+                            <FormControlLabel name='color' value="Purple" control={<Radio />} label="Purple" />
+                            <FormControlLabel name='color' value="White" control={<Radio />} label="White" />
+                            <FormControlLabel name='color' value="Green" control={<Radio />} label="Green" />
 
-                        name='soureeffect'
-                        value={cardData.soureeffect}
-                    />
-                </FormControl>
+                        </RadioGroup>
+
+
+                        <TextField
+                            defaultValue={''}
+                            label="Custo"
+                            variant="standard"
+                            size="small"
+                            onChange={(event) => handleChangeCardData(event)}
+                            style={{ width: '45%' }}
+                            name='play_cost'
+                            value={cardData.play_cost}
+                        />
+                        <TextField
+                            defaultValue={0}
+                            label="DP"
+                            variant="standard"
+                            size="small"
+                            onChange={(event) => handleChangeCardData(event)}
+                            style={{ width: '45%' }}
+                            name='dp'
+                            type='number'
+                            value={cardData.dp}
+                        />
+                        <TextField
+                            defaultValue={''}
+                            label="Custo de Evolução"
+                            variant="standard"
+                            size="small"
+                            onChange={(event) => handleChangeCardData(event)}
+                            style={{ width: '45%' }}
+                            name='evolution_cost'
+                            value={cardData.evolution_cost}
+                        />
+                        <TextField
+                            defaultValue={''}
+                            label="Digimon Level"
+                            variant="standard"
+                            size="small"
+                            onChange={(event) => handleChangeCardData(event)}
+                            style={{ width: '45%' }}
+                            name='digimon_level_cost'
+                            value={cardData.digimon_level_cost}
+                        />
+                        <TextField
+                            defaultValue={''}
+                            label="Link da Imagem"
+                            variant="standard"
+                            style={{ width: '95%' }}
+                            onChange={(event) => handleChangeCardData(event)}
+                            name='url'
+                            value={cardData.url}
+                        />
+                        <TextField
+                            defaultValue={''}
+                            label="Efeito do Digimon"
+                            variant="standard"
+                            style={{ width: '95%' }}
+                            multiline
+                            onChange={(event) => handleChangeCardData(event)}
+                            name='cardEffect'
+                            value={cardData.cardEffect}
+                        />
+                        <TextField
+                            defaultValue={''}
+                            label="Nome do Digimon"
+                            variant="standard"
+                            style={{ width: '45%' }}
+                            onChange={(event) => handleChangeCardData(event)}
+                            name='name'
+                            value={cardData.name}
+                        />
+                        <TextField
+                            defaultValue={''}
+                            label="Level do Digimon"
+                            variant="standard"
+                            size="small"
+                            onChange={(event) => handleChangeCardData(event)}
+                            style={{ width: '45%' }}
+                            name='level'
+                            value={cardData.level}
+                        />
+                        <TextField
+                            defaultValue={''}
+                            label="Codigo do Card"
+                            variant="standard"
+                            size="small"
+                            onChange={(event) => handleChangeCardData(event)}
+                            style={{ width: '45%' }}
+                            name='cardnumber'
+                            value={cardData.cardnumber}
+                        />
+                        <TextField
+                            defaultValue={''}
+                            label="Forma"
+                            variant="standard"
+                            size="small"
+                            onChange={(event) => handleChangeCardData(event)}
+                            style={{ width: '45%' }}
+                            name='stage'
+                            value={cardData.stage}
+                        />
+                        <TextField
+                            defaultValue={''}
+                            label="Atributo"
+                            variant="standard"
+                            size="small"
+                            onChange={(event) => handleChangeCardData(event)}
+                            style={{ width: '45%' }}
+                            name='attribute'
+                            value={cardData.attribute}
+                        />
+                        <TextField
+                            defaultValue={''}
+                            label="Tipo de Digimon"
+                            variant="standard"
+                            size="small"
+                            onChange={(event) => handleChangeCardData(event)}
+                            style={{ width: '45%' }}
+                            name='digi_type'
+                            value={cardData.digi_type}
+                        />
+                        <TextField
+                            defaultValue={''}
+                            label="Efeito Legado"
+                            variant="standard"
+                            size="small"
+                            onChange={(event) => handleChangeCardData(event)}
+                            style={{ width: '95%' }}
+                            multiline
+                            name='soureeffect'
+                            value={cardData.soureeffect}
+                        />
+
+                    </Box>
+                </div>
+            </Container>
 
 
 
-            </Box>
-        </div>
+
+
+
+        </div >
     )
 }

@@ -8,11 +8,13 @@ function App() {
   return (
     <Provider>
       <div className="App">
-        <h1>Digimon Card Maker</h1>
-        <div style={{ height: 'auto', display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'flex-start' }}>
+
+        <h5>Digimon Card Maker</h5>
+        <div style={{ height: 'auto', display: 'flex', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'flex-start', minWidth: '98vw' }}>
           <InfoComponent></InfoComponent>
           <CardComponent />
         </div>
+
       </div >
     </Provider >
   );

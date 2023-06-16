@@ -10,6 +10,7 @@ export function Provider({ children }) {
         name: '',
         dp: 0,
         play_cost: 0,
+        digimon_level_cost: 0,
         evolution_cost: 0,
         requirements: '',
         level: '0',
