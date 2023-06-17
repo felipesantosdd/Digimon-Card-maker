@@ -39,7 +39,9 @@ import OptionGREEN from "../../img/OPTION-GREEN.png"
 import OptionPURPLE from "../../img/OPTION-PURPLE.png"
 import OptionRED from "../../img/OPTION-RED.png"
 import OptionYELLOW from "../../img/OPTION-YELLOW.png"
-import { Card } from "./styled";
+
+
+import { Back, Card, Card2, Front } from "./styled";
 
 
 
@@ -1027,6 +1029,9 @@ export function CardComponent() {
     return (
         <Card >
             <canvas ref={canvasRef} style={{ display: "flex" }} />
+            <Button style={{ marginTop: '15px' }} variant="contained" onClick={() => saveCardImage()}>Salvar</Button>
         </Card>
+
+
     );
 }

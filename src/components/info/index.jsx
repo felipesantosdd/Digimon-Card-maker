@@ -11,6 +11,7 @@ import {
 } from '@mui/material';
 import { getDigimonService } from '../../service/getDigimon';
 import { Container, Options } from './styled.js';
+import backImage from "../../img/Back.png"
 
 export function InfoComponent() {
 
@@ -38,7 +39,7 @@ export function InfoComponent() {
         color: '',
         digimon_level_cost: 0,
         rare: false,
-        url: 'https://images.digimoncard.io/images/card-creator/card/common_red_digi.png'
+        url: 'https://img.mypcards.com/img/9/1595/digimon_bt5_001_p1/digimon_bt5_001_p1_en.jpg'
     });
 
 
@@ -311,12 +312,6 @@ export function InfoComponent() {
                     </Box>
                 </div>
             </Container>
-
-
-
-
-
-
         </div >
     )
 }

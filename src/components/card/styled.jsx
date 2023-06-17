@@ -1,4 +1,4 @@
-import { createGlobalStyle, styled } from "styled-components";
+import { createGlobalStyle, keyframes, styled } from "styled-components";
 
 export const Card = styled.div`
     width: auto;
@@ -11,4 +11,6 @@ export const Card = styled.div`
     margin-left: 10%;
     margin-top:10px;
     background: linear-gradient(145deg, #464d5b, #535b6c);
+    flex-direction: column;
 `;
+
