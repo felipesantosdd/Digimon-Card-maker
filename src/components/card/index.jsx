@@ -303,7 +303,7 @@ export function CardComponent() {
                     // Posição da base do texto fornecida por você (ajuste conforme necessário)
                     let basePositionY = 0
                     switch (cardValue.rare) {
-                        case true: basePositionY = 510;
+                        case true: basePositionY = 455;
                             break;
                         default:
                             basePositionY = 440;
