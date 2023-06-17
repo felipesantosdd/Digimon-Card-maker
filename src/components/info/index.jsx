@@ -7,7 +7,7 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { Context } from '../../provider';
 import { useContext, useEffect, useState } from 'react';
 import {
-    Button, FormControlLabel, FormLabel, Radio, RadioGroup, TextField
+    Button, Checkbox, FormControlLabel, FormLabel, Radio, RadioGroup, TextField
 } from '@mui/material';
 import { getDigimonService } from '../../service/getDigimon';
 import { Container, Options } from './styled.js';
@@ -37,6 +37,7 @@ export function InfoComponent() {
         type: '',
         color: '',
         digimon_level_cost: 0,
+        rare: false,
         url: 'https://images.digimoncard.io/images/card-creator/card/common_red_digi.png'
     });
 
@@ -53,6 +54,17 @@ export function InfoComponent() {
 
     };
 
+    const handleCheckboxChange = (event) => {
+        const { name, checked } = event.target;
+        const updatedCardData = { ...cardData, [name]: checked };
+        setCardData(updatedCardData);
+        setCardValue((prevCardValue) => ({
+            ...prevCardValue,
+            [name]: checked,
+        }));
+    };
+
+
     async function getDigimon(code) {
 
         try {
@@ -63,7 +75,7 @@ export function InfoComponent() {
                 ...prevCardValue,
                 name: digimonData.name,
                 color: digimonData.color,
-                dp: digimonData.dp,
+                dp: Number(digimonData.dp),
                 play_cost: digimonData.play_cost,
                 evolution_cost: digimonData.evolution_cost,
                 level: digimonData.level,
@@ -86,6 +98,10 @@ export function InfoComponent() {
         } catch (error) {
             console.error(error.response.data);
         }
+    }
+
+    function rare(event) {
+        console.log(event.target.value)
     }
 
     useEffect(() => {
@@ -126,6 +142,13 @@ export function InfoComponent() {
                         size="small"
                         onChange={(event) => getDigimon(event)}
                         style={{ width: '30%' }}
+                    />
+
+                    <FormControlLabel
+                        control={<Checkbox checked={cardData.rare} name='rare' value={cardData.rare} onChange={(event) => handleCheckboxChange(event)} />}
+                        name="rare"
+                        label="Rare"
+                        value={cardData.rare}
                     />
                 </Options>
                 <div>

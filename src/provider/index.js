@@ -23,6 +23,7 @@ export function Provider({ children }) {
         type: '',
         fontSize: '',
         color: '',
+        rare: false,
         url: 'https://images.digimoncard.io/images/card-creator/card/common_red_digi.png'
     })
 
