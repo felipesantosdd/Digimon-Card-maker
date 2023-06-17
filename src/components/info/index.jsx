@@ -33,7 +33,7 @@ export function InfoComponent() {
         attribute: '',
         cardEffect: '',
         cardnumber: '',
-        digi_type: '',
+        digi_type: 'Digi-Egg',
         soureeffect: '',
         type: '',
         color: '',

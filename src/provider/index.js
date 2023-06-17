@@ -6,7 +6,7 @@ export const Context = createContext({})
 export function Provider({ children }) {
     const [cardType, setCardType] = React.useState('digimonRed');
     const [cardValue, setCardValue] = React.useState({
-        cardType: 'digimon',
+        cardType: 'Digi-Egg',
         name: '',
         dp: 0,
         play_cost: 0,

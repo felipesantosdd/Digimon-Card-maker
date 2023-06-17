@@ -272,10 +272,9 @@ export function CardComponent() {
             image.onload = () => {
                 context.drawImage(image, 0, 0, canvas.width, canvas.height);
 
-                // Configurar o estilo do texto
                 context.font = "15px Arial"; // Estilo da fonte e tamanho
                 context.textAlign = "center"; // Alinhamento do texto centralizado
-
+                context.fillStyle = "#000000";
                 // Configuração de cada Tipo de card
 
                 if (cardValue.type === "Digimon") {
@@ -329,12 +328,12 @@ export function CardComponent() {
                         // Desenhar o background com efeito de desfoque
                         const backgroundX = cardEffectX - backgroundWidth / 2;
                         const backgroundY = cardEffectY - lineHeight;
-                        context.fillStyle = "rgba(0, 0, 0, 0.9)"; // Cor preta com 90% de transparência
+                        context.fillStyle = "rgba(255, 255, 255, 0.9)"; // Cor preta com 90% de transparência
                         context.filter = "blur(5px)"; // Aplicar desfoque Gaussiano ao preenchimento
                         context.fillRect(backgroundX, backgroundY + 10, backgroundWidth, backgroundHeight + 10);
 
                         // Desenhar o texto
-                        context.fillStyle = "#fff"; // Cor do texto
+                        context.fillStyle = "#000000"; // Cor do texto
                         context.filter = "none"; // Remover o filtro de desfoque
                         lines.forEach((text, index) => {
                             const lineY = cardEffectY + (index + 1) * lineHeight;
@@ -355,19 +354,18 @@ export function CardComponent() {
                             break
                     }
 
-                    context.fillStyle = "#fff"; // Cor do texto
-                    context.strokeStyle = "#000"; // Cor da borda
-                    context.lineWidth = 4; // Largura da borda
+
+                    context.fillStyle = "#000000"; // Cor do texto
+                    context.lineWidth = 1; // Largura da borda
                     context.strokeText(cardName, cardEffectX, cardNameY); // Desenhar a borda
                     context.fillText(cardName, cardEffectX, cardNameY);
 
 
-                    context.fillStyle = "#fff"; // Cor do texto
+                    context.fillStyle = "#030303"; // Cor do texto
                     context.fillText(cardName, cardEffectX, cardNameY);
 
 
 
-                    // Card DP
                     context.font = "40px Arial"; // Estilo da fonte e tamanho
                     context.textAlign = "right"; // Alinhamento do texto centralizado
                     const cardDP = removeUltimosDigitos(cardValue.dp);
@@ -376,16 +374,14 @@ export function CardComponent() {
                     context.fillStyle = "#060606"; // Cor do texto
                     context.strokeText(cardDP, cardDPX, cardDPY); // Desenhar a borda
 
-
                     // Card play_cost
-
                     context.font = "40px Helvetica"; // Estilo da fonte e tamanho
                     context.textAlign = "center"; // Alinhamento do texto centralizado
                     const play_cost = cardValue.play_cost;
                     const play_costY = 66; // Posição y do texto (abaixo do cardEffect)
                     const play_costX = 53; // Posição y do texto (abaixo do cardEffect)
                     context.fillStyle = "#ffffff"; // Cor do texto
-                    context.strokeStyle = "#000"; // Cor da borda
+                    context.strokeStyle = "#080808"; // Cor da borda
                     context.lineWidth = 4; // Largura da borda
                     context.strokeText(play_cost, play_costX, play_costY); // Desenhar a borda
                     context.fillText(play_cost, play_costX, play_costY);
@@ -393,7 +389,6 @@ export function CardComponent() {
 
 
                     // Card evolution_cost
-
                     context.font = "35px Helvetica"; // Estilo da fonte e tamanho
                     context.textAlign = "center"; // Alinhamento do texto centralizado
                     const evolution_cost = cardValue.evolution_cost;
@@ -524,7 +519,11 @@ export function CardComponent() {
                     // Digimon Data
                     const digimondata = `${cardValue.stage}   |   ${cardValue.attribute}     |   ${cardValue.digi_type}`;
                     const digimondataX = 322;
-                    const digimondataY = 508;
+                    let digimondataY = 508;
+
+                    if (cardValue.rare === true) {
+                        digimondataY = 580;;
+                    }
 
 
                     context.font = "7px Helvetica";
@@ -534,7 +533,6 @@ export function CardComponent() {
                     context.strokeText(digimondata, digimondataX, digimondataY);
                     context.fillText(digimondata, digimondataX, digimondataY);
                     context.textAlign = "right";
-
 
 
                 } else if (cardValue.type === "Tamer") {
@@ -579,12 +577,12 @@ export function CardComponent() {
                         // Desenhar o background com efeito de desfoque
                         const backgroundX = cardEffectX - backgroundWidth / 2;
                         const backgroundY = cardEffectY - lineHeight;
-                        context.fillStyle = "rgba(0, 0, 0, 0.9)"; // Cor preta com 90% de transparência
+                        context.fillStyle = "rgba(255, 255, 255, 0.9)"; // Cor preta com 90% de transparência
                         context.filter = "blur(5px)"; // Aplicar desfoque Gaussiano ao preenchimento
                         context.fillRect(backgroundX, backgroundY + 10, backgroundWidth, backgroundHeight + 10);
 
                         // Desenhar o texto
-                        context.fillStyle = "#fff"; // Cor do texto
+                        context.fillStyle = "#000000"; // Cor do texto
                         context.filter = "none"; // Remover o filtro de desfoque
                         lines.forEach((text, index) => {
                             const lineY = cardEffectY + (index + 1) * lineHeight;
@@ -598,15 +596,13 @@ export function CardComponent() {
                     const cardName = cardValue.name;
                     let cardNameY = 475
 
-
-                    context.fillStyle = "#fff"; // Cor do texto
-                    context.strokeStyle = "#000"; // Cor da borda
-                    context.lineWidth = 4; // Largura da borda
+                    context.fillStyle = "#ffffff"; // Cor do texto
+                    context.lineWidth = 1; // Largura da borda
                     context.strokeText(cardName, cardEffectX, cardNameY); // Desenhar a borda
                     context.fillText(cardName, cardEffectX, cardNameY);
 
 
-                    context.fillStyle = "#fff"; // Cor do texto
+                    context.fillStyle = "#ffffff"; // Cor do texto
                     context.fillText(cardName, cardEffectX, cardNameY);
 
                     // Card play_cost
@@ -735,12 +731,12 @@ export function CardComponent() {
                         // Desenhar o background com efeito de desfoque
                         const backgroundX = cardEffectX - backgroundWidth / 2;
                         const backgroundY = cardEffectY - lineHeight;
-                        context.fillStyle = "rgba(0, 0, 0, 0.9)"; // Cor preta com 90% de transparência
+                        context.fillStyle = "rgba(255, 255, 255, 0.9)"; // Cor preta com 90% de transparência
                         context.filter = "blur(5px)"; // Aplicar desfoque Gaussiano ao preenchimento
                         context.fillRect(backgroundX, backgroundY + 10, backgroundWidth, backgroundHeight + 10);
 
                         // Desenhar o texto
-                        context.fillStyle = "#fff"; // Cor do texto
+                        context.fillStyle = "#000000"; // Cor do texto
                         context.filter = "none"; // Remover o filtro de desfoque
                         lines.forEach((text, index) => {
                             const lineY = cardEffectY + (index + 1) * lineHeight;
@@ -755,14 +751,13 @@ export function CardComponent() {
                     let cardNameY = 475
 
 
-                    context.fillStyle = "#fff"; // Cor do texto
-                    context.strokeStyle = "#000"; // Cor da borda
-                    context.lineWidth = 4; // Largura da borda
+                    context.fillStyle = "#ffffff"; // Cor do texto
+                    context.lineWidth = 1; // Largura da borda
                     context.strokeText(cardName, cardEffectX, cardNameY); // Desenhar a borda
                     context.fillText(cardName, cardEffectX, cardNameY);
 
 
-                    context.fillStyle = "#fff"; // Cor do texto
+                    context.fillStyle = "#ffffff"; // Cor do texto
                     context.fillText(cardName, cardEffectX, cardNameY);
 
                     // Card play_cost
@@ -891,12 +886,12 @@ export function CardComponent() {
                         // Desenhar o background com efeito de desfoque
                         const backgroundX = cardEffectX - backgroundWidth / 2;
                         const backgroundY = cardEffectY - lineHeight;
-                        context.fillStyle = "rgba(0, 0, 0, 0.9)"; // Cor preta com 90% de transparência
+                        context.fillStyle = "rgba(255, 255, 255, 0.9)"; // Cor preta com 90% de transparência
                         context.filter = "blur(5px)"; // Aplicar desfoque Gaussiano ao preenchimento
                         context.fillRect(backgroundX, backgroundY + 10, backgroundWidth, backgroundHeight + 10);
 
                         // Desenhar o texto
-                        context.fillStyle = "#fff"; // Cor do texto
+                        context.fillStyle = "#000000"; // Cor do texto
                         context.filter = "none"; // Remover o filtro de desfoque
                         lines.forEach((text, index) => {
                             const lineY = cardEffectY + (index + 1) * lineHeight;
@@ -925,15 +920,13 @@ export function CardComponent() {
                     const cardName = cardValue.name;
                     let cardNameY = 475
 
-
-                    context.fillStyle = "#fff"; // Cor do texto
-                    context.strokeStyle = "#000"; // Cor da borda
-                    context.lineWidth = 4; // Largura da borda
+                    context.fillStyle = "#ffffff"; // Cor do texto
+                    context.lineWidth = 1; // Largura da borda
                     context.strokeText(cardName, cardEffectX, cardNameY); // Desenhar a borda
                     context.fillText(cardName, cardEffectX, cardNameY);
 
 
-                    context.fillStyle = "#fff"; // Cor do texto
+                    context.fillStyle = "#ffffff"; // Cor do texto
                     context.fillText(cardName, cardEffectX, cardNameY);
 
                     // Card number
