@@ -309,10 +309,15 @@ export function CardComponent() {
                             basePositionY = 440;
                             break
                     }
+                    const cardEffectHeight = lines.length * lineHeight;
+                    let cardEffectY = 0
 
                     // Ajustar a posição y do texto para alinhar por baixo
-                    const cardEffectHeight = lines.length * lineHeight;
-                    const cardEffectY = basePositionY - cardEffectHeight;
+                    if (cardValue.rare === false) {
+                        cardEffectY = basePositionY - cardEffectHeight;
+                    } else {
+                        cardEffectY = 425
+                    }
 
                     if (cardEffect.trim() !== "") {
                         // Calcular as dimensões do background
