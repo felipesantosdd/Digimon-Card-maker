@@ -50,8 +50,6 @@ import { Back, Card, Card2, Front } from "./styled";
 
 export function CardComponent() {
 
-
-
     const { cardValue } = useContext(Context);
 
     let cardImage;
@@ -226,12 +224,6 @@ export function CardComponent() {
             break;
     }
 
-
-
-
-
-
-
     function removeUltimosDigitos(numero) {
 
         if (typeof numero == "number") {
@@ -354,25 +346,30 @@ export function CardComponent() {
                             break
                     }
 
-
-                    context.fillStyle = "#000000"; // Cor do texto
                     context.lineWidth = 1; // Largura da borda
                     context.strokeText(cardName, cardEffectX, cardNameY); // Desenhar a borda
                     context.fillText(cardName, cardEffectX, cardNameY);
-
-
-                    context.fillStyle = "#030303"; // Cor do texto
+                    context.fillStyle = "#fefefe"; // Cor do texto
                     context.fillText(cardName, cardEffectX, cardNameY);
 
+                    // context.font = "40px Arial"; // Estilo da fonte e tamanho
+                    // context.fillStyle = "#060606";
+                    // context.textAlign = "right"; // Alinhamento do texto centralizado
+                    // const cardDP = removeUltimosDigitos(cardValue.dp);
+                    // const cardDPY = 47; // Posição y do texto (abaixo do cardEffect)
+                    // const cardDPX = 365; // Posição y do texto (abaixo do cardEffect)
+                    // context.fillStyle = "#060606"; // Cor do texto
+                    // context.strokeText(cardDP, cardDPX, cardDPY); // Desenhar a borda
 
-
-                    context.font = "40px Arial"; // Estilo da fonte e tamanho
-                    context.textAlign = "right"; // Alinhamento do texto centralizado
-                    const cardDP = removeUltimosDigitos(cardValue.dp);
-                    const cardDPY = 47; // Posição y do texto (abaixo do cardEffect)
-                    const cardDPX = 365; // Posição y do texto (abaixo do cardEffect)
-                    context.fillStyle = "#060606"; // Cor do texto
-                    context.strokeText(cardDP, cardDPX, cardDPY); // Desenhar a borda
+                    // DP
+                    context.font = "45px Arial"; // Estilo da fonte e tamanho
+                    context.textAlign = "right";
+                    const DP = removeUltimosDigitos(cardValue.dp)
+                    const dpPositionY = 48; // Posição y do texto (abaixo do cardEffect)
+                    const dpPositionX = 365; // Posição y do texto (abaixo do cardEffect)
+                    context.fillStyle = "#000000"; // Cor do texto
+                    context.strokeText(DP, dpPositionX, dpPositionY); // Desenhar a borda
+                    context.fillText(DP, dpPositionX, dpPositionY);
 
                     // Card play_cost
                     context.font = "40px Helvetica"; // Estilo da fonte e tamanho
@@ -387,7 +384,6 @@ export function CardComponent() {
                     context.fillText(play_cost, play_costX, play_costY);
                     context.textAlign = "center";
 
-
                     // Card evolution_cost
                     context.font = "35px Helvetica"; // Estilo da fonte e tamanho
                     context.textAlign = "center"; // Alinhamento do texto centralizado
@@ -400,7 +396,6 @@ export function CardComponent() {
                     context.strokeText(evolution_cost, evolution_costX, evolution_costY); // Desenhar a borda
                     context.fillText(evolution_cost, evolution_costX, evolution_costY);
                     context.textAlign = "center";
-
 
                     // Card level_evolution_cost
                     context.font = "10px Helvetica";
@@ -415,7 +410,6 @@ export function CardComponent() {
                     context.fillText(level_evolution_cost, level_evolution_costX, level_evolution_costY);
                     context.textAlign = "center";
 
-
                     // Card number
                     const cardnumber = cardValue.cardnumber;
                     const cardnumberX = 361;
@@ -424,10 +418,9 @@ export function CardComponent() {
                         case true: cardnumberY = 552;
                             break;
                         default:
-                            cardnumberY = 481; // Posição y do texto (abaixo do cardEffect)
+                            cardnumberY = 481;
                             break
                     };
-
 
                     context.font = "10px Helvetica";
                     context.textAlign = "center";
@@ -438,7 +431,6 @@ export function CardComponent() {
                     context.fillText(cardnumber, cardnumberX, cardnumberY);
                     context.textAlign = "center";
 
-
                     // Card level
                     const level = cardValue.level;
                     const levelX = 72;
@@ -447,10 +439,9 @@ export function CardComponent() {
                         case true: levelY = 574;
                             break;
                         default:
-                            levelY = 503; // Posição y do texto (abaixo do cardEffect)
+                            levelY = 503;
                             break
                     };
-
 
                     context.font = "30px Helvetica";
                     context.textAlign = "center";
@@ -466,10 +457,8 @@ export function CardComponent() {
                     if (cardValue.soureeffect !== "") {
                         context.font = "bold 15px Arial"; // Estilo da fonte e tamanho
                         context.textAlign = "center"; // Alinhamento do texto centralizado
-
                         const cardsoureeffect = cardValue.soureeffect;
                         let cardsoureeffectX = canvas.width / 2; // Posição x do texto (centro do canvas)
-                        let cardsoureeffectY = 590; // Posição y do texto (centro do canvas)
                         let maxLineWidth = 360; // Largura máxima para cada linha de texto
                         const lineHeight = 16; // Altura da linha de texto
 
@@ -494,9 +483,6 @@ export function CardComponent() {
                         lines.push(line.trim());
 
                         // Posição da base do texto fornecida por você (ajuste conforme necessário)
-                        const basePositionY = cardsoureeffectY;
-
-                        const cardEffectHeight = lines.length * lineHeight;
                         const cardEffectY = 516;
 
                         // Desenhar o texto
@@ -512,10 +498,6 @@ export function CardComponent() {
                         });
                     }
 
-
-
-
-
                     // Digimon Data
                     const digimondata = `${cardValue.stage}   |   ${cardValue.attribute}     |   ${cardValue.digi_type}`;
                     const digimondataX = 322;
@@ -525,7 +507,6 @@ export function CardComponent() {
                         digimondataY = 580;;
                     }
 
-
                     context.font = "7px Helvetica";
                     context.textAlign = "center";
                     context.fillStyle = "#ffffff";
@@ -533,7 +514,6 @@ export function CardComponent() {
                     context.strokeText(digimondata, digimondataX, digimondataY);
                     context.fillText(digimondata, digimondataX, digimondataY);
                     context.textAlign = "right";
-
 
                 } else if (cardValue.type === "Tamer") {
 
@@ -971,11 +951,6 @@ export function CardComponent() {
                         }
                         lines.push(line.trim());
 
-                        // Posição da base do texto fornecida por você (ajuste conforme necessário)
-                        const basePositionY = cardsoureeffectY;
-
-                        // Ajustar a posição y do texto para alinhar por baixo
-                        const cardEffectHeight = lines.length * lineHeight;
                         const cardEffectY = 500;
 
                         // Desenhar o texto
@@ -1002,7 +977,6 @@ export function CardComponent() {
                     const digimondataX = 322;
                     const digimondataY = 491;
 
-
                     context.font = "7px Helvetica";
                     context.textAlign = "center";
                     context.fillStyle = "#ffffff";
@@ -1012,9 +986,6 @@ export function CardComponent() {
                     context.textAlign = "right";
 
                 }
-
-
-
             };
         };
     }, [cardImage, cardValue]);
