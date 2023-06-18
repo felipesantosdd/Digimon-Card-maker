@@ -88,7 +88,7 @@ export function InfoComponent() {
                 stage: digimonData.stage,
                 digi_type: digimonData.digi_type,
                 digimon_level_cost: digimonData.level - 1,
-                url: 'https://images.digimoncard.io/images/card-creator/card/common_red_digi.png'
+                url: `https://en.digimoncard.com/images/cardlist/card/${digimonData.cardnumber}.png`
             }));
 
             setCardValue(cardData)
