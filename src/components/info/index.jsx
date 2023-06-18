@@ -18,7 +18,7 @@ export function InfoComponent() {
 
 
 
-    const { cardType, setCardType, setCardValue } = useContext(Context);
+    const { cardType, setCardType, setCardValue, fontSize, setFontSize } = useContext(Context);
 
 
 
@@ -52,6 +52,13 @@ export function InfoComponent() {
             [name]: value
 
         }));
+
+    };
+
+    const handleFontSize = (event) => {
+        const font = event.target.value;
+        setFontSize(font)
+        console.log(font)
 
     };
 
@@ -101,13 +108,45 @@ export function InfoComponent() {
         }
     }
 
-    function rare(event) {
-        console.log(event.target.value)
-    }
-
     useEffect(() => {
         setCardValue(cardData)
     }, [cardData])
+
+    var valorAreaTransferencia = ""; // Variável para armazenar o valor atual da área de transferência
+
+    function copiarTextoParaAreaTransferencia(texto) {
+        // Verifica se o valor atual é diferente do novo valor
+        if (valorAreaTransferencia !== texto) {
+            // Cria um elemento de área de transferência temporário
+            var tempInput = document.createElement("textarea");
+            tempInput.style.position = "absolute";
+            tempInput.style.left = "-1000px";
+            tempInput.value = texto;
+            document.body.appendChild(tempInput);
+
+            // Seleciona o texto no elemento de área de transferência temporário
+            tempInput.select();
+            tempInput.setSelectionRange(0, 99999); // Para dispositivos móveis
+
+            // Copia o texto selecionado para a área de transferência
+            document.execCommand("copy");
+
+            // Remove o elemento de área de transferência temporário
+            document.body.removeChild(tempInput);
+
+            // Atualiza o valor da variável com o novo valor
+            valorAreaTransferencia = texto;
+
+            // Exibe uma mensagem ou realiza outras ações de acordo com a necessidade
+            console.log("Valor copiado para a área de transferência: " + texto);
+        } else {
+            // Valor atual é o mesmo que o novo valor, não há necessidade de copiar novamente
+            console.log("Valor já está na área de transferência: " + texto);
+        }
+    }
+
+
+
 
 
     return (
@@ -143,7 +182,9 @@ export function InfoComponent() {
                         size="small"
                         onChange={(event) => getDigimon(event)}
                         style={{ width: '30%' }}
-                    />
+                    />  <Button onClick={() => copiarTextoParaAreaTransferencia(cardData.cardnumber)}>Copiar</Button>
+
+
 
                     <FormControlLabel
                         control={<Checkbox checked={cardData.rare} name='rare' value={cardData.rare} onChange={(event) => handleCheckboxChange(event)} />}
@@ -232,12 +273,24 @@ export function InfoComponent() {
                             defaultValue={''}
                             label="Efeito do Digimon"
                             variant="standard"
-                            style={{ width: '95%' }}
+                            style={{ width: '85%' }}
                             multiline
                             onChange={(event) => handleChangeCardData(event)}
                             name='cardEffect'
                             value={cardData.cardEffect}
                         />
+                        <TextField
+                            defaultValue={''}
+                            label="Font Size"
+                            variant="standard"
+                            style={{ width: '10%' }}
+                            multiline
+                            type='number'
+                            onChange={(event) => handleFontSize(event)}
+                            name='fontSize'
+                            value={fontSize}
+                        />
+                        <Button variant="contained" onClick={() => copiarTextoParaAreaTransferencia(cardData.cardEffect)}>Copiar Effeito</Button>
                         <TextField
                             defaultValue={''}
                             label="Nome do Digimon"
@@ -307,7 +360,7 @@ export function InfoComponent() {
                             multiline
                             name='soureeffect'
                             value={cardData.soureeffect}
-                        />
+                        /><Button variant="contained" onClick={() => copiarTextoParaAreaTransferencia(cardData.soureeffect)}>Copiar Efeito Legado</Button>
 
                     </Box>
                 </div>

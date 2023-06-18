@@ -50,7 +50,7 @@ import { Back, Card, Card2, Front } from "./styled";
 
 export function CardComponent() {
 
-    const { cardValue } = useContext(Context);
+    const { cardValue, fontSize } = useContext(Context);
 
     let cardImage;
     switch (cardValue.color) {
@@ -252,7 +252,7 @@ export function CardComponent() {
         canvas.width = 430;
         canvas.height = 601;
 
-        // Desenhar a imagem de fundo
+        // Desenhar a imagem de fundo  
         const backgroundImage = new Image();
         backgroundImage.src = cardValue.url;
         backgroundImage.onload = () => {
@@ -264,7 +264,8 @@ export function CardComponent() {
             image.onload = () => {
                 context.drawImage(image, 0, 0, canvas.width, canvas.height);
 
-                context.font = "15px Arial"; // Estilo da fonte e tamanho
+
+                context.font = `${fontSize}px Arial`; // Estilo da fonte e tamanho
                 context.textAlign = "center"; // Alinhamento do texto centralizado
                 context.fillStyle = "#000000";
                 // Configuração de cada Tipo de card
@@ -274,8 +275,8 @@ export function CardComponent() {
                     const cardEffectX = canvas.width / 2; // Posição x do texto (centro do canvas)
 
                     // Quebra automática de texto
-                    const maxLineWidth = 377; // Largura máxima para cada linha de texto
-                    const lineHeight = 16; // Altura da linha de texto
+                    const maxLineWidth = 370; // Largura máxima para cada linha de texto
+                    const lineHeight = 15; // Altura da linha de texto
                     const words = cardEffect.split(" ");
                     let line = "";
                     let lines = [];
@@ -573,13 +574,15 @@ export function CardComponent() {
                     const cardName = cardValue.name;
                     let cardNameY = 475
 
-                    context.fillStyle = "#ffffff"; // Cor do texto
+
                     context.lineWidth = 1; // Largura da borda
                     context.strokeText(cardName, cardEffectX, cardNameY); // Desenhar a borda
                     context.fillText(cardName, cardEffectX, cardNameY);
-
-
-                    context.fillStyle = "#ffffff"; // Cor do texto
+                    if (cardValue.color === "Yellow") {
+                        context.fillStyle = "#040404"; // Cor do texto
+                    } else {
+                        context.fillStyle = "#ffffff"; // Cor do texto
+                    }
                     context.fillText(cardName, cardEffectX, cardNameY);
 
                     // Card play_cost
@@ -728,13 +731,17 @@ export function CardComponent() {
                     let cardNameY = 475
 
 
-                    context.fillStyle = "#ffffff"; // Cor do texto
+                    if (cardValue.color === "Yellow") {
+                        context.fillStyle = "#000000"; // Cor do texto
+                    } else {
+                        context.fillStyle = "#ffffff"; // Cor do texto
+                    }
                     context.lineWidth = 1; // Largura da borda
                     context.strokeText(cardName, cardEffectX, cardNameY); // Desenhar a borda
                     context.fillText(cardName, cardEffectX, cardNameY);
 
 
-                    context.fillStyle = "#ffffff"; // Cor do texto
+
                     context.fillText(cardName, cardEffectX, cardNameY);
 
                     // Card play_cost
@@ -897,13 +904,17 @@ export function CardComponent() {
                     const cardName = cardValue.name;
                     let cardNameY = 475
 
-                    context.fillStyle = "#ffffff"; // Cor do texto
+
                     context.lineWidth = 1; // Largura da borda
                     context.strokeText(cardName, cardEffectX, cardNameY); // Desenhar a borda
                     context.fillText(cardName, cardEffectX, cardNameY);
 
 
-                    context.fillStyle = "#ffffff"; // Cor do texto
+                    if (cardValue.color === "Yellow") {
+                        context.fillStyle = "#000000"; // Cor do texto
+                    } else {
+                        context.fillStyle = "#ffffff"; // Cor do texto
+                    }
                     context.fillText(cardName, cardEffectX, cardNameY);
 
                     // Card number
@@ -985,7 +996,7 @@ export function CardComponent() {
                 }
             };
         };
-    }, [cardImage, cardValue]);
+    }, [cardImage, cardValue, fontSize]);
 
     return (
         <Card >

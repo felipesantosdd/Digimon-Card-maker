@@ -4,6 +4,7 @@ export const Context = createContext({})
 
 
 export function Provider({ children }) {
+    const [fontSize, setFontSize] = React.useState(14)
     const [cardType, setCardType] = React.useState('digimonRed');
     const [cardValue, setCardValue] = React.useState({
         cardType: 'Digi-Egg',
@@ -32,7 +33,9 @@ export function Provider({ children }) {
             cardType,
             setCardType,
             cardValue,
-            setCardValue
+            setCardValue,
+            fontSize,
+            setFontSize
         }}>{children}</Context.Provider>
     )
 }
