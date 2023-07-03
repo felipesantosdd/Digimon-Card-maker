@@ -1048,7 +1048,7 @@ export function CardComponent() {
     return (
         <Card >
             <canvas ref={canvasRef} style={{ display: "flex" }} />
-            <Button style={{ marginTop: '15px' }} variant="contained" onClick={() => saveCardImage()}>Salvar</Button>
+            {/* <Button style={{ marginTop: '15px' }} variant="contained" onClick={() => saveCardImage()}>Salvar</Button> */}
         </Card>
 
 

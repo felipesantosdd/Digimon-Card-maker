@@ -10,7 +10,7 @@ function App() {
       <div className="App">
 
         <h5>Digimon Card Maker</h5>
-        <div style={{ height: 'auto', display: 'flex', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'flex-start', minWidth: '98vw' }}>
+        <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'flex-start', minWidth: '98vw' }}>
           <InfoComponent></InfoComponent>
           <CardComponent />
         </div>

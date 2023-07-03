@@ -219,7 +219,7 @@ export function InfoComponent() {
                         </RadioGroup>
 
 
-                        <TextField
+                        {/* <TextField
                             defaultValue={''}
                             label="Custo"
                             variant="standard"
@@ -228,8 +228,8 @@ export function InfoComponent() {
                             style={{ width: '45%' }}
                             name='play_cost'
                             value={cardData.play_cost}
-                        />
-                        <TextField
+                        /> */}
+                        {/* <TextField
                             defaultValue={0}
                             label="DP"
                             variant="standard"
@@ -239,8 +239,8 @@ export function InfoComponent() {
                             name='dp'
                             type='number'
                             value={cardData.dp}
-                        />
-                        <TextField
+                        /> */}
+                        {/* <TextField
                             defaultValue={''}
                             label="Custo de Evolução"
                             variant="standard"
@@ -259,7 +259,7 @@ export function InfoComponent() {
                             style={{ width: '45%' }}
                             name='digimon_level_cost'
                             value={cardData.digimon_level_cost}
-                        />
+                        /> */}
                         <TextField
                             defaultValue={''}
                             label="Link da Imagem"
@@ -300,7 +300,7 @@ export function InfoComponent() {
                             name='name'
                             value={cardData.name}
                         />
-                        <TextField
+                        {/* <TextField
                             defaultValue={''}
                             label="Level do Digimon"
                             variant="standard"
@@ -309,8 +309,8 @@ export function InfoComponent() {
                             style={{ width: '45%' }}
                             name='level'
                             value={cardData.level}
-                        />
-                        <TextField
+                        /> */}
+                        {/* <TextField
                             defaultValue={''}
                             label="Codigo do Card"
                             variant="standard"
@@ -319,7 +319,7 @@ export function InfoComponent() {
                             style={{ width: '45%' }}
                             name='cardnumber'
                             value={cardData.cardnumber}
-                        />
+                        /> */}
                         <TextField
                             defaultValue={''}
                             label="Forma"
