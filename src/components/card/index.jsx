@@ -262,6 +262,11 @@ export function CardComponent() {
             image.src = cardImage;
 
 
+            // Adicionar a borda preta
+            context.strokeStyle = "black";
+            context.lineWidth = 2;
+            context.strokeRect(0, 0, canvas.width, canvas.height);
+
 
             context.font = `${fontSize}px Arial`; // Estilo da fonte e tamanho
             context.textAlign = "center"; // Alinhamento do texto centralizado
@@ -919,20 +924,26 @@ export function CardComponent() {
                     });
                 }
 
-                // Card level
-                const level = cardValue.level;
-                const levelX = 72;
-                const levelY = 487;
+                context.fillStyle = color || 'black';
+                const digitamaNameBackgroundHeight = 30;
+                const digitamaNameBackgroundWidth = 287;
+                const digitamaNameBackgroundX = 115;
+                const digitamaNameBackgroundY = 450
+                context.fillRect(digitamaNameBackgroundX, digitamaNameBackgroundY, digitamaNameBackgroundWidth, digitamaNameBackgroundHeight);
 
-                context.font = "30px Helvetica";
-                context.textAlign = "center";
-                context.fillStyle = "#ffffff";
-                context.strokeStyle = "#0000002f";
-                context.lineWidth = 2;
-                context.strokeText(level, levelX, levelY);
-                context.fillText(level, levelX, levelY);
-                context.textAlign = "center";
+                context.fillStyle = color || 'black';
+                const digitamaEffectBackgroundHeight = 74;
+                const digitamaEffectBackgroundWidth = 297;
+                const digitamaEffectBackgroundX = 109;
+                const digitamaEffectBackgroundY = 500
+                context.fillRect(digitamaEffectBackgroundX, digitamaEffectBackgroundY, digitamaEffectBackgroundWidth, digitamaEffectBackgroundHeight);
 
+                context.fillStyle = cardValue.color === 'Black' ? '#FFFFFF' : '#1C1614';
+                const digitamaDataBackgroundHeight = 9;
+                const digitamaDataBackgroundWidth = 297;
+                const digitamaDataBackgroundX = 102;
+                const digitamaDataBackgroundY = 483
+                context.fillRect(digitamaDataBackgroundX, digitamaDataBackgroundY, digitamaDataBackgroundWidth, digitamaDataBackgroundHeight);
 
                 // Card Name
                 context.font = "20px Arial"; // Estilo da fonte e tamanho
@@ -972,9 +983,9 @@ export function CardComponent() {
                     context.textAlign = "center"; // Alinhamento do texto centralizado
 
                     const cardsoureeffect = cardValue.soureeffect;
-                    let cardsoureeffectX = 215; // Posição x do texto (centro do canvas)
+                    let cardsoureeffectX = 255; // Posição x do texto (centro do canvas)
                     let cardsoureeffectY = 505; // Posição y do texto (centro do canvas)
-                    let maxLineWidth = 380; // Largura máxima para cada linha de texto
+                    let maxLineWidth = 300; // Largura máxima para cada linha de texto
                     const lineHeight = 16; // Altura da linha de texto
 
                     // Quebra automática de texto
