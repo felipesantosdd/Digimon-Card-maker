@@ -151,7 +151,7 @@ export function InfoComponent() {
 
     return (
         <div style={{
-            width: '500px',
+            width: '50%',
             height: 'auto',
             display: 'flex',
             flexWrap: 'wrap',
@@ -162,7 +162,7 @@ export function InfoComponent() {
             <Container>
                 <Options>
 
-                    <Select
+                    {/* <Select
                         label="Tipo de Card"
                         defaultValue={'Digimon'}
                         onChange={(event) => handleChangeCardData(event)}
@@ -173,7 +173,7 @@ export function InfoComponent() {
                         <MenuItem value={'Option'}>Option</MenuItem>
                         <MenuItem value={'Tamer'}>Tamer</MenuItem>
                         <MenuItem value={'Digi-Egg'}>Digi-Egg</MenuItem>
-                    </Select>
+                    </Select> */}
 
                     <TextField
                         defaultValue={''}
@@ -202,7 +202,7 @@ export function InfoComponent() {
                         noValidate
                         autoComplete="off"
                     >
-                        <RadioGroup
+                        {/* <RadioGroup
                             row
                             name="color"
                             display="flex"
@@ -216,7 +216,7 @@ export function InfoComponent() {
                             <FormControlLabel name='color' value="White" control={<Radio />} label="White" />
                             <FormControlLabel name='color' value="Green" control={<Radio />} label="Green" />
 
-                        </RadioGroup>
+                        </RadioGroup> */}
 
 
                         {/* <TextField
