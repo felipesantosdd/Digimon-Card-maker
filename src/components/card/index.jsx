@@ -53,195 +53,194 @@ export function CardComponent() {
     const { cardValue, fontSize } = useContext(Context);
 
     let cardImage;
+    let color
     switch (cardValue.color) {
         case "Yellow":
             switch (cardValue.type) {
                 case "Tamer":
-                    cardImage = TamerYELLOW;
+                    color = '#FFE100';
                     break;
                 case "Digimon":
                     switch (cardValue.rare) {
                         case true:
-                            cardImage = RareYellow
+                            color = '#FFE100';
                             break;
                         default:
-                            cardImage = CommonYellow
+                            color = '#FFE100';
                     }break
                 case "Option":
-                    cardImage = OptionYELLOW;
+                    color = '#FFE100';
                     break;
                 case "Digi-Egg":
-                    cardImage = DigitamaYELLOW;
+                    color = '#FFE100';
                     break;
                 default:
-                    cardImage = CommonYellow;
+                    color = '#FFE100';
                     break;
             }
             break;
         case "Blue":
             switch (cardValue.type) {
                 case "Tamer":
-                    cardImage = TamerBLUE;
+                    color = '#0097E0';
                     break;
                 case "Digimon":
                     switch (cardValue.rare) {
                         case true:
-                            cardImage = RareBlue
+                            color = '#0097E0';
                             break;
                         default:
-                            cardImage = CommonBlue
+                            color = '#0097E0';
                     }break
                 case "Option":
-                    cardImage = OptionBLUE;
+                    color = '#0097E0';
                     break;
                 case "Digi-Egg":
-                    cardImage = DigitamaBlue;
+                    color = '#0097E0';
                     break;
                 default:
-                    cardImage = CommonBlue;
+                    color = '#0097E0';
                     break;
             }
             break;
         case "Green":
             switch (cardValue.type) {
                 case "Tamer":
-                    cardImage = TamerGREEN;
+                    color = '#009B6B';
                     break;
                 case "Digimon":
                     switch (cardValue.rare) {
                         case true:
-                            cardImage = RareGreen
+                            color = '#009B6B';
                             break;
                         default:
-                            cardImage = CommonGreen
+                            color = '#009B6B';
                     }break
                 case "Option":
-                    cardImage = OptionGREEN;
+                    color = '#009B6B';
                     break;
                 case "Digi-Egg":
-                    cardImage = DigitamaGreen;
+                    color = '#009B6B';
                     break;
                 default:
-                    cardImage = CommonGreen;
+                    color = '#009B6B';
                     break;
             }
             break;
         case "Purple":
             switch (cardValue.type) {
                 case "Tamer":
-                    cardImage = TamerPURPLE;
+                    color = '#6353A5';
                     break;
                 case "Digimon":
                     switch (cardValue.rare) {
                         case true:
-                            cardImage = RarePurple
+                            color = '#6353A5';
                             break;
                         default:
-                            cardImage = CommonPurple
+                            color = '#6353A5';
                     }break
                 case "Option":
-                    cardImage = OptionPURPLE;
+                    color = '#6353A5';
                     break;
                 case "Digi-Egg":
-                    cardImage = DigitamaPURPLE;
+                    color = '#6353A5';
                     break;
                 default:
-                    cardImage = CommonPurple;
+                    color = '#6353A5';
                     break;
             }
             break;
         case "Black":
             switch (cardValue.type) {
                 case "Tamer":
-                    cardImage = TamerBLACK;
+                    color = '#221714';
                     break;
                 case "Digimon":
                     switch (cardValue.rare) {
                         case true:
-                            cardImage = RareBlack
+                            color = '#221714';
                             break;
                         default:
-                            cardImage = CommonBlack
+                            color = '#221714';
                     }break
                 case "Option":
-                    cardImage = OptionBlack;
+                    color = '#221714';
                     break;
                 case "Digi-Egg":
-                    cardImage = DigitamaBlack;
+                    color = '#221714';
                     break;
                 default:
-                    cardImage = CommonBlack;
+                    color = '#221714';
                     break;
             }
             break;
         case "White":
             switch (cardValue.type) {
                 case "Tamer":
-                    cardImage = TamerBLACK;
+                    color = '#FFFFFF';
                     break;
                 case "Digimon":
                     switch (cardValue.rare) {
                         case true:
-                            cardImage = RareWhite
+                            color = '#FFFFFF';
                             break;
                         default:
-                            cardImage = CommonWhite
+                            color = '#FFFFFF';
                     }break
                 case "Option":
-                    cardImage = OptionRED;
+                    color = '#FFFFFF';
                     break;
                 case "Digi-Egg":
-                    cardImage = DigitamaRED;
+                    color = '#FFFFFF';
                     break;
                 default:
-                    cardImage = CommonWhite;
+                    color = '#FFFFFF';
                     break;
             }
             break;
         default:
             switch (cardValue.type) {
                 case "Tamer":
-                    cardImage = TamerRED;
+                    color = '#E6002D';
                     break;
                 case "Digimon":
                     switch (cardValue.rare) {
                         case true:
-                            cardImage = RareRed
+                            color = '#E6002D';
                             break;
                         default:
-                            cardImage = CommonRed
+                            color = '#E6002D';
                     }break
                 case "Option":
-                    cardImage = OptionRED;
+                    color = '#E6002D';
                     break;
                 case "Digi-Egg":
-                    cardImage = DigitamaRED;
+                    color = '#E6002D';
                     break;
                 default:
-                    cardImage = CommonRed;
+                    color = '#E6002D';
                     break;
             }
             break;
     }
-
-    function removeUltimosDigitos(numero) {
-
-        if (typeof numero == "number") {
-            const numeroString = numero.toString();
-            const novoNumeroString = numeroString.slice(0, -3);
-            const novoNumero = parseInt(novoNumeroString);
-            return novoNumero;
-        } else {
-            return 0
-        }
-    }
-
     const canvasRef = useRef(null);
 
     const saveCardImage = () => {
         const canvas = canvasRef.current;
         const dataURL = canvas.toDataURL("image/png");
-        saveAs(dataURL, "card_image.png");
+
+        // Create an anchor element to trigger the download
+        const downloadLink = document.createElement("a");
+        downloadLink.href = dataURL;
+        downloadLink.download = "card_image.png";
+
+        // Trigger the download
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+
+        // Clean up
+        document.body.removeChild(downloadLink);
     };
 
     useEffect(() => {
@@ -261,740 +260,777 @@ export function CardComponent() {
             // Desenhar a imagem principal
             const image = new Image();
             image.src = cardImage;
-            image.onload = () => {
-                context.drawImage(image, 0, 0, canvas.width, canvas.height);
-
-
-                context.font = `${fontSize}px Arial`; // Estilo da fonte e tamanho
-                context.textAlign = "center"; // Alinhamento do texto centralizado
-                context.fillStyle = "#000000";
-                // Configuração de cada Tipo de card
-
-                if (cardValue.type === "Digimon") {
-                    const cardEffect = cardValue.cardEffect;
-                    const cardEffectX = canvas.width / 2; // Posição x do texto (centro do canvas)
-
-                    // Quebra automática de texto
-                    const maxLineWidth = 370; // Largura máxima para cada linha de texto
-                    const lineHeight = 15; // Altura da linha de texto
-                    const words = cardEffect.split(" ");
-                    let line = "";
-                    let lines = [];
-
-                    for (let i = 0; i < words.length; i++) {
-                        const testLine = line + words[i] + " ";
-                        const testLineWidth = context.measureText(testLine).width;
-
-                        if (testLineWidth > maxLineWidth) {
-                            lines.push(line.trim());
-                            line = words[i] + " ";
-                        } else {
-                            line = testLine;
-                        }
-                    }
-                    lines.push(line.trim());
-
-                    // Card Effect
-                    let basePositionY = 440
-
-                    const cardEffectHeight = lines.length * lineHeight;
-                    let cardEffectY = 0
-
-                    // Ajustar a posição y do texto para alinhar por baixo
-                    if (cardValue.rare === false) {
-                        cardEffectY = basePositionY - cardEffectHeight;
-                    } else {
-                        cardEffectY = 407
-                    }
-
-
-                    if (cardEffect.trim() !== "") {
-                        // Calcular as dimensões do background
-                        const backgroundWidth = maxLineWidth;
-                        const backgroundHeight = cardEffectHeight + lineHeight;
-
-                        // Desenhar o background com efeito de desfoque
-                        const backgroundX = cardEffectX - backgroundWidth / 2;
-                        const backgroundY = cardEffectY - lineHeight;
-                        context.fillStyle = "rgba(255, 255, 255, 0.9)"; // Cor preta com 90% de transparência
-                        context.filter = "blur(2px)"; // Aplicar desfoque Gaussiano ao preenchimento
-                        context.fillRect(backgroundX, backgroundY + 10, backgroundWidth, backgroundHeight + 10);
-
-                        // Desenhar o texto
-                        context.fillStyle = "#000000"; // Cor do texto
-                        context.filter = "none"; // Remover o filtro de desfoque
-                        lines.forEach((text, index) => {
-                            const lineY = cardEffectY + (index + 1) * lineHeight;
-                            context.fillText(text, cardEffectX, lineY);
-                        });
-                    }
-
-                    // Card Name
-                    context.font = "20px Arial"; // Estilo da fonte e tamanho
-                    context.textAlign = "center"; // Alinhamento do texto centralizado
-                    const cardName = cardValue.name;
-                    let cardNameY = 0
-                    switch (cardValue.rare) {
-                        case true: cardNameY = 565;
-                            break;
-                        default:
-                            cardNameY = 495; // Posição y do texto (abaixo do cardEffect)
-                            break
-                    }
-                    context.lineWidth = 1; // Largura da borda
-                    context.strokeText(cardName, cardEffectX, cardNameY); // Desenhar a borda
-                    context.fillText(cardName, cardEffectX, cardNameY);
-                    if (cardValue.color === "Yellow" || cardValue.color === "White") {
-                        context.fillStyle = "#090909"; // Cor do texto
-                    } else {
-                        context.fillStyle = "#fefefe"; // Cor do texto
-                    }
-                    context.fillText(cardName, cardEffectX, cardNameY);
-
-                    if (cardValue.rare === false) {
-                        // DP
-                        context.font = "45px Arial"; // Estilo da fonte e tamanho
-                        context.textAlign = "right";
-                        const DP = removeUltimosDigitos(cardValue.dp)
-                        const dpPositionY = 48; // Posição y do texto (abaixo do cardEffect)
-                        const dpPositionX = 365; // Posição y do texto (abaixo do cardEffect)
-                        context.fillStyle = "#000000"; // Cor do texto
-                        context.strokeStyle = "#080808"; // Cor da borda
-                        context.lineWidth = 3
-                        context.strokeText(DP, dpPositionX, dpPositionY); // Desenhar a borda
-                        context.fillText(DP, dpPositionX, dpPositionY);
-
-
-                        // Card play_cost
-
-
-                        context.font = "40px Helvetica"; // Estilo da fonte e tamanho
-                        context.textAlign = "center"; // Alinhamento do texto centralizado
-                        const play_cost = cardValue.play_cost;
-                        const play_costY = 66; // Posição y do texto (abaixo do cardEffect)
-                        const play_costX = 53; // Posição y do texto (abaixo do cardEffect)
-                        context.fillStyle = "#ffffff"; // Cor do texto
-                        context.strokeStyle = "#080808"; // Cor da borda
-                        context.lineWidth = 4; // Largura da borda
-                        context.strokeText(play_cost, play_costX, play_costY); // Desenhar a borda
-                        context.fillText(play_cost, play_costX, play_costY);
-                        context.textAlign = "center";
-
-
-                        // Card evolution_cost
-                        context.font = "35px Helvetica"; // Estilo da fonte e tamanho
-                        context.textAlign = "center"; // Alinhamento do texto centralizado
-                        const evolution_cost = cardValue.evolution_cost;
-                        const evolution_costY = 150; // Posição y do texto (abaixo do cardEffect)
-                        const evolution_costX = 54; // Posição y do texto (abaixo do cardEffect)
-                        context.fillStyle = "#ffffff"; // Cor do texto
-                        context.strokeStyle = "#000"; // Cor da borda
-                        context.lineWidth = 4; // Largura da borda
-                        context.strokeText(evolution_cost, evolution_costX, evolution_costY); // Desenhar a borda
-                        context.fillText(evolution_cost, evolution_costX, evolution_costY);
-                        context.textAlign = "center";
-
-                        // Card level_evolution_cost
-                        context.font = "10px Helvetica";
-                        context.textAlign = "center";
-                        const level_evolution_cost = `Lv.${cardValue.level - 1}`;
-                        const level_evolution_costY = 122;
-                        const level_evolution_costX = 54;
-                        context.fillStyle = "#ffffff";
-                        context.strokeStyle = "#000";
-                        context.lineWidth = 2;
-                        context.strokeText(level_evolution_cost, level_evolution_costX, level_evolution_costY);
-                        context.fillText(level_evolution_cost, level_evolution_costX, level_evolution_costY);
-                        context.textAlign = "center";
-                    }
-
-                    // Card number
-                    const cardnumber = cardValue.cardnumber;
-                    const cardnumberX = 361;
-                    let cardnumberY = 0
-                    switch (cardValue.rare) {
-                        case true: cardnumberY = 552;
-                            break;
-                        default:
-                            cardnumberY = 481;
-                            break
-                    };
-
-                    context.font = "10px Helvetica";
-                    context.textAlign = "center";
-                    context.fillStyle = "#ffffff";
-                    context.strokeStyle = "#000";
-                    context.lineWidth = 2;
-                    context.strokeText(cardnumber, cardnumberX, cardnumberY);
-                    context.fillText(cardnumber, cardnumberX, cardnumberY);
-                    context.textAlign = "center";
-
-                    // Card level
-                    const level = cardValue.level;
-                    const levelX = 72;
-                    let levelY = 0;
-                    switch (cardValue.rare) {
-                        case true: levelY = 574;
-                            break;
-                        default:
-                            levelY = 503;
-                            break
-                    };
-
-                    context.font = "30px Helvetica";
-                    context.textAlign = "center";
-                    context.fillStyle = "#ffffff";
-                    context.strokeStyle = "#0000002f";
-                    context.lineWidth = 2;
-                    context.strokeText(level, levelX, levelY);
-                    context.fillText(level, levelX, levelY);
-                    context.textAlign = "center";
-
-
-                    // Card soureeffect
-                    if (cardValue.soureeffect !== "") {
-                        context.font = "bold 15px Arial"; // Estilo da fonte e tamanho
-                        context.textAlign = "center"; // Alinhamento do texto centralizado
-                        const cardsoureeffect = cardValue.soureeffect;
-                        let cardsoureeffectX = canvas.width / 2; // Posição x do texto (centro do canvas)
-                        let maxLineWidth = 360; // Largura máxima para cada linha de texto
-                        const lineHeight = 16; // Altura da linha de texto
 
 
 
-                        // Quebra automática de texto
-                        let line = "";
-                        let lines = [];
+            context.font = `${fontSize}px Arial`; // Estilo da fonte e tamanho
+            context.textAlign = "center"; // Alinhamento do texto centralizado
+            context.fillStyle = "#000000";
+            // Configuração de cada Tipo de card
 
-                        const words = cardsoureeffect.split(" ");
-                        for (let i = 0; i < words.length; i++) {
-                            const testLine = line + words[i] + " ";
-                            const testLineWidth = context.measureText(testLine).width;
+            if (cardValue.type === "Digimon") {
+                const cardEffect = cardValue.cardEffect;
+                const cardEffectX = canvas.width / 2; // Posição x do texto (centro do canvas)
 
-                            if (testLineWidth > maxLineWidth) {
-                                lines.push(line.trim());
-                                line = words[i] + " ";
-                            } else {
-                                line = testLine;
-                            }
-                        }
+                // Quebra automática de texto
+                const maxLineWidth = 370; // Largura máxima para cada linha de texto
+                const lineHeight = 15; // Altura da linha de texto
+                const words = cardEffect.split(" ");
+                let line = "";
+                let lines = [];
+
+                for (let i = 0; i < words.length; i++) {
+                    const testLine = line + words[i] + " ";
+                    const testLineWidth = context.measureText(testLine).width;
+
+                    if (testLineWidth > maxLineWidth) {
                         lines.push(line.trim());
-
-                        // Posição da base do texto fornecida por você (ajuste conforme necessário)
-                        const cardEffectY = 516;
-
-                        // Desenhar o texto
-                        if (cardValue.color === "Yellow" || cardValue.color === "White" || cardValue.color === "Blue") {
-                            context.fillStyle = "#020202";
-                        } else {
-                            context.fillStyle = "#ffffff"; // Cor do texto
-                        }
-
-                        lines.forEach((text, index) => {
-                            const lineY = cardEffectY + (index + 1) * lineHeight;
-                            context.fillText(text, cardsoureeffectX, lineY);
-                        });
-                    }
-
-                    // Digimon Data
-                    const digimondata = `${cardValue.stage}   |   ${cardValue.attribute}     |   ${cardValue.digi_type}`;
-                    const digimondataX = 322;
-                    let digimondataY = 508;
-
-                    if (cardValue.rare === true) {
-                        digimondataY = 580;;
-                    }
-
-                    context.font = "8px Helvetica";
-                    context.textAlign = "center";
-                    context.fillStyle = "#ffffff";
-                    context.lineWidth = 2;
-                    context.strokeText(digimondata, digimondataX, digimondataY);
-                    context.fillText(digimondata, digimondataX, digimondataY);
-                    context.textAlign = "right";
-
-                } else if (cardValue.type === "Tamer") {
-
-
-                    const cardEffect = cardValue.cardEffect;
-                    const cardEffectX = canvas.width / 2; // Posição x do texto (centro do canvas)
-
-                    // Quebra automática de texto
-                    const maxLineWidth = 377; // Largura máxima para cada linha de texto
-                    const lineHeight = 16; // Altura da linha de texto
-                    const words = cardEffect.split(" ");
-                    let line = "";
-                    let lines = [];
-
-                    for (let i = 0; i < words.length; i++) {
-                        const testLine = line + words[i] + " ";
-                        const testLineWidth = context.measureText(testLine).width;
-
-                        if (testLineWidth > maxLineWidth) {
-                            lines.push(line.trim());
-                            line = words[i] + " ";
-                        } else {
-                            line = testLine;
-                        }
-                    }
-                    lines.push(line.trim());
-
-                    // Posição da base do texto fornecida por você (ajuste conforme necessário)
-                    let basePositionY = 415
-
-
-                    // Ajustar a posição y do texto para alinhar por baixo
-                    const cardEffectHeight = lines.length * lineHeight;
-                    const cardEffectY = basePositionY - cardEffectHeight;
-
-                    if (cardEffect.trim() !== "") {
-                        // Calcular as dimensões do background
-                        const backgroundWidth = maxLineWidth;
-                        const backgroundHeight = cardEffectHeight + lineHeight;
-
-                        // Desenhar o background com efeito de desfoque
-                        const backgroundX = cardEffectX - backgroundWidth / 2;
-                        const backgroundY = cardEffectY - lineHeight;
-                        context.fillStyle = "rgba(255, 255, 255, 0.9)"; // Cor preta com 90% de transparência
-                        context.filter = "blur(5px)"; // Aplicar desfoque Gaussiano ao preenchimento
-                        context.fillRect(backgroundX, backgroundY + 10, backgroundWidth, backgroundHeight + 10);
-
-                        // Desenhar o texto
-                        context.fillStyle = "#000000"; // Cor do texto
-                        context.filter = "none"; // Remover o filtro de desfoque
-                        lines.forEach((text, index) => {
-                            const lineY = cardEffectY + (index + 1) * lineHeight;
-                            context.fillText(text, cardEffectX, lineY);
-                        });
-                    }
-
-                    // Card Name
-                    context.font = "20px Arial"; // Estilo da fonte e tamanho
-                    context.textAlign = "center"; // Alinhamento do texto centralizado
-                    const cardName = cardValue.name;
-                    let cardNameY = 475
-
-
-                    context.lineWidth = 1; // Largura da borda
-                    context.strokeText(cardName, cardEffectX, cardNameY); // Desenhar a borda
-                    context.fillText(cardName, cardEffectX, cardNameY);
-                    if (cardValue.color === "Yellow") {
-                        context.fillStyle = "#040404"; // Cor do texto
+                        line = words[i] + " ";
                     } else {
-                        context.fillStyle = "#ffffff"; // Cor do texto
+                        line = testLine;
                     }
-                    context.fillText(cardName, cardEffectX, cardNameY);
-
-                    // Card play_cost
-                    context.font = "40px Helvetica"; // Estilo da fonte e tamanho
-                    context.textAlign = "center"; // Alinhamento do texto centralizado
-                    const play_cost = cardValue.play_cost;
-                    const play_costY = 66; // Posição y do texto (abaixo do cardEffect)
-                    const play_costX = 53; // Posição y do texto (abaixo do cardEffect)
-                    context.fillStyle = "#ffffff"; // Cor do texto
-                    context.strokeStyle = "#000"; // Cor da borda
-                    context.lineWidth = 4; // Largura da borda
-                    context.strokeText(play_cost, play_costX, play_costY); // Desenhar a borda
-                    context.fillText(play_cost, play_costX, play_costY);
-                    context.textAlign = "center";
-
-                    // Card number
-                    const cardnumber = cardValue.cardnumber;
-                    const cardnumberX = 361;
-                    const cardnumberY = 458
-                    context.font = "10px Helvetica";
-                    context.textAlign = "center";
-                    context.fillStyle = "#ffffff";
-                    context.strokeStyle = "#000";
-                    context.lineWidth = 2;
-                    context.strokeText(cardnumber, cardnumberX, cardnumberY);
-                    context.fillText(cardnumber, cardnumberX, cardnumberY);
-                    context.textAlign = "center";
-
-                    // Card soureeffect
-                    if (cardValue.soureeffect !== "") {
-                        context.font = "bold 15px Arial"; // Estilo da fonte e tamanho
-                        context.textAlign = "center"; // Alinhamento do texto centralizado
-
-                        const cardsoureeffect = cardValue.soureeffect;
-                        let cardsoureeffectX = 250; // Posição x do texto (centro do canvas)
-                        let cardsoureeffectY = 505; // Posição y do texto (centro do canvas)
-                        let maxLineWidth = 310; // Largura máxima para cada linha de texto
-                        const lineHeight = 16; // Altura da linha de texto
-
-                        // Quebra automática de texto
-                        let line = "";
-                        let lines = [];
-
-                        const words = cardsoureeffect.split(" ");
-                        for (let i = 0; i < words.length; i++) {
-                            const testLine = line + words[i] + " ";
-                            const testLineWidth = context.measureText(testLine).width;
-
-                            if (testLineWidth > maxLineWidth) {
-                                lines.push(line.trim());
-                                line = words[i] + " ";
-                            } else {
-                                line = testLine;
-                            }
-                        }
-                        lines.push(line.trim());
-
-                        // Posição da base do texto fornecida por você (ajuste conforme necessário)
-                        const basePositionY = cardsoureeffectY;
-
-                        // Ajustar a posição y do texto para alinhar por baixo
-                        const cardEffectHeight = lines.length * lineHeight;
-                        const cardEffectY = 496;
-
-                        // Desenhar o texto
-                        if (cardValue.color === "Yellow" || cardValue.color === "White" || cardValue.color === "Blue") {
-                            context.fillStyle = "#020202";
-                        } else {
-                            context.fillStyle = "#ffffff"; // Cor do texto
-                        }
-
-                        lines.forEach((text, index) => {
-                            const lineY = cardEffectY + (index + 1) * lineHeight;
-                            context.fillText(text, cardsoureeffectX, lineY);
-                        });
-                    }
-
-
-
-
-                    context.font = "7px Helvetica";
-                    context.textAlign = "center";
-                    context.fillStyle = "#ffffff";
-                    context.lineWidth = 2;
-                    context.textAlign = "right";
-
-                } else if (cardValue.type === "Option") {
-
-
-                    const cardEffect = cardValue.cardEffect;
-                    const cardEffectX = canvas.width / 2; // Posição x do texto (centro do canvas)
-
-                    // Quebra automática de texto
-                    const maxLineWidth = 377; // Largura máxima para cada linha de texto
-                    const lineHeight = 16; // Altura da linha de texto
-                    const words = cardEffect.split(" ");
-                    let line = "";
-                    let lines = [];
-
-                    for (let i = 0; i < words.length; i++) {
-                        const testLine = line + words[i] + " ";
-                        const testLineWidth = context.measureText(testLine).width;
-
-                        if (testLineWidth > maxLineWidth) {
-                            lines.push(line.trim());
-                            line = words[i] + " ";
-                        } else {
-                            line = testLine;
-                        }
-                    }
-                    lines.push(line.trim());
-
-                    // Posição da base do texto fornecida por você (ajuste conforme necessário)
-                    let basePositionY = 415
-
-
-                    // Ajustar a posição y do texto para alinhar por baixo
-                    const cardEffectHeight = lines.length * lineHeight;
-                    const cardEffectY = basePositionY - cardEffectHeight;
-
-                    if (cardEffect.trim() !== "") {
-                        // Calcular as dimensões do background
-                        const backgroundWidth = maxLineWidth;
-                        const backgroundHeight = cardEffectHeight + lineHeight;
-
-                        // Desenhar o background com efeito de desfoque
-                        const backgroundX = cardEffectX - backgroundWidth / 2;
-                        const backgroundY = cardEffectY - lineHeight;
-                        context.fillStyle = "rgba(255, 255, 255, 0.9)"; // Cor preta com 90% de transparência
-                        context.filter = "blur(5px)"; // Aplicar desfoque Gaussiano ao preenchimento
-                        context.fillRect(backgroundX, backgroundY + 10, backgroundWidth, backgroundHeight + 10);
-
-                        // Desenhar o texto
-                        context.fillStyle = "#000000"; // Cor do texto
-                        context.filter = "none"; // Remover o filtro de desfoque
-                        lines.forEach((text, index) => {
-                            const lineY = cardEffectY + (index + 1) * lineHeight;
-                            context.fillText(text, cardEffectX, lineY);
-                        });
-                    }
-
-                    // Card Name
-                    context.font = "20px Arial"; // Estilo da fonte e tamanho
-                    context.textAlign = "center"; // Alinhamento do texto centralizado
-                    const cardName = cardValue.name;
-                    let cardNameY = 475
-
-
-                    if (cardValue.color === "Yellow") {
-                        context.fillStyle = "#000000"; // Cor do texto
-                    } else {
-                        context.fillStyle = "#ffffff"; // Cor do texto
-                    }
-                    context.lineWidth = 1; // Largura da borda
-                    context.strokeText(cardName, cardEffectX, cardNameY); // Desenhar a borda
-                    context.fillText(cardName, cardEffectX, cardNameY);
-
-
-
-                    context.fillText(cardName, cardEffectX, cardNameY);
-
-                    // Card play_cost
-                    context.font = "40px Helvetica"; // Estilo da fonte e tamanho
-                    context.textAlign = "center"; // Alinhamento do texto centralizado
-                    const play_cost = cardValue.play_cost;
-                    const play_costY = 66; // Posição y do texto (abaixo do cardEffect)
-                    const play_costX = 53; // Posição y do texto (abaixo do cardEffect)
-                    context.fillStyle = "#ffffff"; // Cor do texto
-                    context.strokeStyle = "#000"; // Cor da borda
-                    context.lineWidth = 4; // Largura da borda
-                    context.strokeText(play_cost, play_costX, play_costY); // Desenhar a borda
-                    context.fillText(play_cost, play_costX, play_costY);
-                    context.textAlign = "center";
-
-                    // Card number
-                    const cardnumber = cardValue.cardnumber;
-                    const cardnumberX = 361;
-                    const cardnumberY = 458
-                    context.font = "10px Helvetica";
-                    context.textAlign = "center";
-                    context.fillStyle = "#ffffff";
-                    context.strokeStyle = "#000";
-                    context.lineWidth = 2;
-                    context.strokeText(cardnumber, cardnumberX, cardnumberY);
-                    context.fillText(cardnumber, cardnumberX, cardnumberY);
-                    context.textAlign = "center";
-
-                    // Card soureeffect
-                    if (cardValue.soureeffect !== "") {
-                        context.font = "bold 15px Arial"; // Estilo da fonte e tamanho
-                        context.textAlign = "center"; // Alinhamento do texto centralizado
-
-                        const cardsoureeffect = cardValue.soureeffect;
-                        let cardsoureeffectX = 250; // Posição x do texto (centro do canvas)
-                        let cardsoureeffectY = 505; // Posição y do texto (centro do canvas)
-                        let maxLineWidth = 310; // Largura máxima para cada linha de texto
-                        const lineHeight = 16; // Altura da linha de texto
-
-                        // Quebra automática de texto
-                        let line = "";
-                        let lines = [];
-
-                        const words = cardsoureeffect.split(" ");
-                        for (let i = 0; i < words.length; i++) {
-                            const testLine = line + words[i] + " ";
-                            const testLineWidth = context.measureText(testLine).width;
-
-                            if (testLineWidth > maxLineWidth) {
-                                lines.push(line.trim());
-                                line = words[i] + " ";
-                            } else {
-                                line = testLine;
-                            }
-                        }
-                        lines.push(line.trim());
-
-                        // Posição da base do texto fornecida por você (ajuste conforme necessário)
-                        const basePositionY = cardsoureeffectY;
-
-                        // Ajustar a posição y do texto para alinhar por baixo
-                        const cardEffectHeight = lines.length * lineHeight;
-                        const cardEffectY = 496;
-
-                        // Desenhar o texto
-                        if (cardValue.color === "Yellow" || cardValue.color === "White" || cardValue.color === "Blue") {
-                            context.fillStyle = "#020202";
-                        } else {
-                            context.fillStyle = "#ffffff"; // Cor do texto
-                        }
-
-                        lines.forEach((text, index) => {
-                            const lineY = cardEffectY + (index + 1) * lineHeight;
-                            context.fillText(text, cardsoureeffectX, lineY);
-                        });
-                    }
-
-
-
-
-                    context.font = "7px Helvetica";
-                    context.textAlign = "center";
-                    context.fillStyle = "#ffffff";
-                    context.lineWidth = 2;
-                    context.textAlign = "right";
-
-                } else if (cardValue.type === "Digi-Egg") {
-
-
-                    const cardEffect = cardValue.cardEffect;
-                    const cardEffectX = canvas.width / 2; // Posição x do texto (centro do canvas)
-
-                    // Quebra automática de texto
-                    const maxLineWidth = 377; // Largura máxima para cada linha de texto
-                    const lineHeight = 16; // Altura da linha de texto
-                    const words = cardEffect.split(" ");
-                    let line = "";
-                    let lines = [];
-
-                    for (let i = 0; i < words.length; i++) {
-                        const testLine = line + words[i] + " ";
-                        const testLineWidth = context.measureText(testLine).width;
-
-                        if (testLineWidth > maxLineWidth) {
-                            lines.push(line.trim());
-                            line = words[i] + " ";
-                        } else {
-                            line = testLine;
-                        }
-                    }
-                    lines.push(line.trim());
-
-                    // Posição da base do texto fornecida por você (ajuste conforme necessário)
-                    let basePositionY = 415
-
-
-                    // Ajustar a posição y do texto para alinhar por baixo
-                    const cardEffectHeight = lines.length * lineHeight;
-                    const cardEffectY = basePositionY - cardEffectHeight;
-
-                    if (cardEffect.trim() !== "") {
-                        // Calcular as dimensões do background
-                        const backgroundWidth = maxLineWidth;
-                        const backgroundHeight = cardEffectHeight + lineHeight;
-
-                        // Desenhar o background com efeito de desfoque
-                        const backgroundX = cardEffectX - backgroundWidth / 2;
-                        const backgroundY = cardEffectY - lineHeight;
-                        context.fillStyle = "rgba(255, 255, 255, 0.9)"; // Cor preta com 90% de transparência
-                        context.filter = "blur(5px)"; // Aplicar desfoque Gaussiano ao preenchimento
-                        context.fillRect(backgroundX, backgroundY + 10, backgroundWidth, backgroundHeight + 10);
-
-                        // Desenhar o texto
-                        context.fillStyle = "#000000"; // Cor do texto
-                        context.filter = "none"; // Remover o filtro de desfoque
-                        lines.forEach((text, index) => {
-                            const lineY = cardEffectY + (index + 1) * lineHeight;
-                            context.fillText(text, cardEffectX, lineY);
-                        });
-                    }
-
-                    // Card level
-                    const level = cardValue.level;
-                    const levelX = 72;
-                    const levelY = 487;
-
-                    context.font = "30px Helvetica";
-                    context.textAlign = "center";
-                    context.fillStyle = "#ffffff";
-                    context.strokeStyle = "#0000002f";
-                    context.lineWidth = 2;
-                    context.strokeText(level, levelX, levelY);
-                    context.fillText(level, levelX, levelY);
-                    context.textAlign = "center";
-
-
-                    // Card Name
-                    context.font = "20px Arial"; // Estilo da fonte e tamanho
-                    context.textAlign = "center"; // Alinhamento do texto centralizado
-                    const cardName = cardValue.name;
-                    let cardNameY = 475
-
-
-                    context.lineWidth = 1; // Largura da borda
-                    context.strokeText(cardName, cardEffectX, cardNameY); // Desenhar a borda
-                    context.fillText(cardName, cardEffectX, cardNameY);
-
-
-                    if (cardValue.color === "Yellow") {
-                        context.fillStyle = "#000000"; // Cor do texto
-                    } else {
-                        context.fillStyle = "#ffffff"; // Cor do texto
-                    }
-                    context.fillText(cardName, cardEffectX, cardNameY);
-
-                    // Card number
-                    const cardnumber = cardValue.cardnumber;
-                    const cardnumberX = 361;
-                    const cardnumberY = 465
-                    context.font = "10px Helvetica";
-                    context.textAlign = "center";
-                    context.fillStyle = "#ffffff";
-                    context.strokeStyle = "#000";
-                    context.lineWidth = 2;
-                    context.strokeText(cardnumber, cardnumberX, cardnumberY);
-                    context.fillText(cardnumber, cardnumberX, cardnumberY);
-                    context.textAlign = "center";
-
-                    // Card soureeffect
-                    if (cardValue.soureeffect !== "") {
-                        context.font = "bold 15px Arial"; // Estilo da fonte e tamanho
-                        context.textAlign = "center"; // Alinhamento do texto centralizado
-
-                        const cardsoureeffect = cardValue.soureeffect;
-                        let cardsoureeffectX = 215; // Posição x do texto (centro do canvas)
-                        let cardsoureeffectY = 505; // Posição y do texto (centro do canvas)
-                        let maxLineWidth = 380; // Largura máxima para cada linha de texto
-                        const lineHeight = 16; // Altura da linha de texto
-
-                        // Quebra automática de texto
-                        let line = "";
-                        let lines = [];
-
-                        const words = cardsoureeffect.split(" ");
-                        for (let i = 0; i < words.length; i++) {
-                            const testLine = line + words[i] + " ";
-                            const testLineWidth = context.measureText(testLine).width;
-
-                            if (testLineWidth > maxLineWidth) {
-                                lines.push(line.trim());
-                                line = words[i] + " ";
-                            } else {
-                                line = testLine;
-                            }
-                        }
-                        lines.push(line.trim());
-
-                        const cardEffectY = 500;
-
-                        // Desenhar o texto
-                        if (cardValue.color === "Yellow" || cardValue.color === "White" || cardValue.color === "Blue") {
-                            context.fillStyle = "#020202";
-                        } else {
-                            context.fillStyle = "#ffffff"; // Cor do texto
-                        }
-
-                        lines.forEach((text, index) => {
-                            const lineY = cardEffectY + (index + 1) * lineHeight;
-                            context.fillText(text, cardsoureeffectX, lineY);
-                        });
-                    }
-
-                    context.font = "7px Helvetica";
-                    context.textAlign = "center";
-                    context.fillStyle = "#ffffff";
-                    context.lineWidth = 2;
-                    context.textAlign = "right";
-
-                    // Digimon Data
-                    const digimondata = `${cardValue.stage}   |   ${cardValue.attribute}     |   ${cardValue.digi_type}`;
-                    const digimondataX = 322;
-                    const digimondataY = 491;
-
-                    context.font = "7px Helvetica";
-                    context.textAlign = "center";
-                    context.fillStyle = "#ffffff";
-                    context.lineWidth = 2;
-                    context.strokeText(digimondata, digimondataX, digimondataY);
-                    context.fillText(digimondata, digimondataX, digimondataY);
-                    context.textAlign = "right";
-
                 }
-            };
+                lines.push(line.trim());
+
+                // Card Effect
+                let basePositionY = 440
+
+                const cardEffectHeight = lines.length * lineHeight;
+                let cardEffectY = 0
+
+                // Ajustar a posição y do texto para alinhar por baixo
+                if (cardValue.rare === false) {
+                    cardEffectY = 350;
+                } else {
+                    cardEffectY = 407
+                }
+
+
+                if (cardEffect.trim() !== "") {
+                    // Calcular as dimensões do background
+                    const backgroundWidth = maxLineWidth;
+                    const backgroundHeight = cardEffectHeight + lineHeight;
+
+                    // Desenhar o background com efeito de desfoque
+                    const backgroundX = cardEffectX - backgroundWidth / 2 + 4;
+                    const backgroundY = cardEffectY - lineHeight + 5;
+                    context.fillStyle = "rgba(255, 255, 255, 0.9)"; // Cor preta com 90% de transparência
+                    context.filter = "blur(2px)"; // Aplicar desfoque Gaussiano ao preenchimento
+                    context.fillRect(backgroundX, backgroundY + 10, backgroundWidth, backgroundHeight + 10);
+
+                    // Desenhar o texto
+                    context.fillStyle = "#000000"; // Cor do texto
+                    context.filter = "none"; // Remover o filtro de desfoque
+                    lines.forEach((text, index) => {
+                        const lineY = cardEffectY + (index + 1) * lineHeight;
+                        context.fillText(text, cardEffectX, lineY);
+                    });
+                }
+
+                // Blackground do nome do card
+                context.fillStyle = color || "black";
+                const textHeight = lines.length * lineHeight;
+                const padding = 15; // Espaçamento interno
+                const backgroundHeight = 30;
+                const backgroundWidth = 290;
+                const backgroundX = 114;
+                const backgroundY = cardValue.rare ? 535 : 470;
+                context.fillRect(backgroundX, backgroundY, backgroundWidth, backgroundHeight);
+
+
+                // Card Name
+                context.font = "20px Arial"; // Estilo da fonte e tamanho
+                context.textAlign = "center"; // Alinhamento do texto centralizado
+                const cardName = cardValue.name;
+                let cardNameY = 0
+                switch (cardValue.rare) {
+                    case true: cardNameY = 565;
+                        break;
+                    default:
+                        cardNameY = 492; // Posição y do texto (abaixo do cardEffect)
+                        break
+                }
+                context.lineWidth = 1; // Largura da borda
+                context.strokeText(cardName, cardEffectX, cardNameY); // Desenhar a borda
+                context.fillText(cardName, cardEffectX, cardNameY);
+                if (cardValue.color === "Yellow" || cardValue.color === "White") {
+                    context.fillStyle = "#090909"; // Cor do texto
+                } else {
+                    context.fillStyle = "#fefefe"; // Cor do texto
+                }
+                context.fillText(cardName, cardEffectX, cardNameY);
+
+                if (cardValue.rare === false) {
+                    // DP
+                    // context.font = "45px Arial"; // Estilo da fonte e tamanho
+                    // context.textAlign = "right";
+                    // const DP = removeUltimosDigitos(cardValue.dp)
+                    // const dpPositionY = 48; // Posição y do texto (abaixo do cardEffect)
+                    // const dpPositionX = 365; // Posição y do texto (abaixo do cardEffect)
+                    // context.fillStyle = "#000000"; // Cor do texto
+                    // context.strokeStyle = "#080808"; // Cor da borda
+                    // context.lineWidth = 3
+                    // context.strokeText(DP, dpPositionX, dpPositionY); // Desenhar a borda
+                    // context.fillText(DP, dpPositionX, dpPositionY);
+
+
+                    // Card play_cost
+
+
+                    // context.font = "40px Helvetica"; // Estilo da fonte e tamanho
+                    // context.textAlign = "center"; // Alinhamento do texto centralizado
+                    // const play_cost = cardValue.play_cost;
+                    // const play_costY = 66; // Posição y do texto (abaixo do cardEffect)
+                    // const play_costX = 53; // Posição y do texto (abaixo do cardEffect)
+                    // context.fillStyle = "#ffffff"; // Cor do texto
+                    // context.strokeStyle = "#080808"; // Cor da borda
+                    // context.lineWidth = 4; // Largura da borda
+                    // context.strokeText(play_cost, play_costX, play_costY); // Desenhar a borda
+                    // context.fillText(play_cost, play_costX, play_costY);
+                    // context.textAlign = "center";
+
+
+                    // Card evolution_cost
+                    // context.font = "35px Helvetica"; // Estilo da fonte e tamanho
+                    // context.textAlign = "center"; // Alinhamento do texto centralizado
+                    // const evolution_cost = cardValue.evolution_cost;
+                    // const evolution_costY = 150; // Posição y do texto (abaixo do cardEffect)
+                    // const evolution_costX = 54; // Posição y do texto (abaixo do cardEffect)
+                    // context.fillStyle = "#ffffff"; // Cor do texto
+                    // context.strokeStyle = "#000"; // Cor da borda
+                    // context.lineWidth = 4; // Largura da borda
+                    // context.strokeText(evolution_cost, evolution_costX, evolution_costY); // Desenhar a borda
+                    // context.fillText(evolution_cost, evolution_costX, evolution_costY);
+                    // context.textAlign = "center";
+
+                    // Card level_evolution_cost
+                }
+
+                // Card number
+                const cardnumber = cardValue.cardnumber;
+                const cardnumberX = 361;
+                let cardnumberY = 0
+                switch (cardValue.rare) {
+                    case true: cardnumberY = 552;
+                        break;
+                    default:
+                        cardnumberY = 481;
+                        break
+                };
+
+                // Desenhar o background verde
+
+
+                context.font = "10px Helvetica";
+                context.textAlign = "left";
+                context.fillStyle = "#ffffff";
+                context.strokeStyle = "#000";
+                context.lineWidth = 2;
+                context.strokeText(cardnumber, cardnumberX, cardnumberY);
+                context.fillText(cardnumber, cardnumberX, cardnumberY);
+                context.textAlign = "center";
+
+                // Card level
+                const level = cardValue.level;
+                const levelX = 72;
+                let levelY = 0;
+                // switch (cardValue.rare) {
+                //     case true: levelY = 574;
+                //         break;
+                //     default:
+                //         levelY = 503;
+                //         break
+                // };
+
+                context.font = "30px Helvetica";
+                context.textAlign = "left";
+                context.fillStyle = "#ffffff";
+                context.strokeStyle = "#0000002f";
+                context.lineWidth = 2;
+                context.strokeText(level, levelX, levelY);
+                context.fillText(level, levelX, levelY);
+                context.textAlign = "center";
+
+
+                // Card soureeffect
+                if (cardValue.soureeffect !== "") {
+                    context.font = "15px Arial"; // Estilo da fonte e tamanho
+                    context.textAlign = "left"; // Alinhamento do texto centralizado
+                    const cardsoureeffect = cardValue.soureeffect;
+                    let cardsoureeffectX = 120; // Posição x do texto (centro do canvas)
+                    let maxLineWidth = 280; // Largura máxima para cada linha de texto
+                    const lineHeight = 16; // Altura da linha de texto
+
+
+
+                    // Quebra automática de texto
+                    let line = "";
+                    let lines = [];
+
+                    const words = cardsoureeffect.split(" ");
+                    for (let i = 0; i < words.length; i++) {
+                        const testLine = line + words[i] + " ";
+                        const testLineWidth = context.measureText(testLine).width;
+
+                        if (testLineWidth > maxLineWidth) {
+                            lines.push(line.trim());
+                            line = words[i] + " ";
+                        } else {
+                            line = testLine;
+                        }
+
+                        context.fillStyle = color || 'black';
+                        const textHeight = lines.length * lineHeight;
+                        const padding = 10; // Espaçamento interno
+                        const backgroundHeight = 75;
+                        const backgroundWidth = 295;
+                        const backgroundX = 110;
+                        const backgroundY = 520
+                        context.fillRect(backgroundX, backgroundY, backgroundWidth, backgroundHeight);
+                    }
+                    lines.push(line.trim());
+
+                    // Posição da base do texto fornecida por você (ajuste conforme necessário)
+                    const cardEffectY = 516;
+
+                    // Desenhar o texto
+                    if (cardValue.color === "Yellow" || cardValue.color === "White" || cardValue.color === "Blue") {
+                        context.fillStyle = "#020202";
+                    } else {
+                        context.fillStyle = "#ffffff"; // Cor do texto
+                    }
+
+                    lines.forEach((text, index) => {
+                        const lineY = cardEffectY + (index + 1) * lineHeight;
+                        context.fillText(text, cardsoureeffectX, lineY);
+                    });
+                }
+
+
+                // Digimon Data
+                const digimondata = `${cardValue.stage}   |   ${cardValue.attribute}     |   ${cardValue.digi_type}`;
+                const digimondataX = 322;
+                let digimondataY = cardValue.rare ? 575 : 510;
+
+                const backBlackWidth = 250;
+                const backBlackHeight = 9;
+                const backBlackX = 150;
+                const backBlackY = cardValue.rare ? 567.9 : 503;
+
+
+                context.fillStyle = cardValue.color === 'Black' ? 'white' : "#26120E";
+                context.fillRect(backBlackX, backBlackY, backBlackWidth, backBlackHeight);
+                context.font = "10px arial";
+                context.textAlign = "center";
+                context.fillStyle = cardValue.color === 'Black' ? "#26120E" : 'white';
+                context.strokeText(digimondata, digimondataX, digimondataY);
+                context.fillText(digimondata, digimondataX, digimondataY);
+                context.textAlign = "right";
+
+
+
+
+            } else if (cardValue.type === "Tamer") {
+
+
+                const cardEffect = cardValue.cardEffect;
+                const cardEffectX = canvas.width / 2; // Posição x do texto (centro do canvas)
+
+                // Quebra automática de texto
+                const maxLineWidth = 377; // Largura máxima para cada linha de texto
+                const lineHeight = 16; // Altura da linha de texto
+                const words = cardEffect.split(" ");
+                let line = "";
+                let lines = [];
+
+                for (let i = 0; i < words.length; i++) {
+                    const testLine = line + words[i] + " ";
+                    const testLineWidth = context.measureText(testLine).width;
+
+                    if (testLineWidth > maxLineWidth) {
+                        lines.push(line.trim());
+                        line = words[i] + " ";
+                    } else {
+                        line = testLine;
+                    }
+                }
+                lines.push(line.trim());
+
+                // Posição da base do texto fornecida por você (ajuste conforme necessário)
+                let basePositionY = 415
+
+
+                // Ajustar a posição y do texto para alinhar por baixo
+                const cardEffectHeight = lines.length * lineHeight;
+                const cardEffectY = 330;
+
+                if (cardEffect.trim() !== "") {
+                    // Calcular as dimensões do background
+                    const backgroundWidth = maxLineWidth;
+                    const backgroundHeight = cardEffectHeight + lineHeight;
+
+                    // Desenhar o background com efeito de desfoque
+                    const backgroundX = cardEffectX - backgroundWidth / 2;
+                    const backgroundY = cardEffectY - lineHeight;
+                    context.fillStyle = "rgba(255, 255, 255, 0.9)"; // Cor preta com 90% de transparência
+                    context.filter = "blur(5px)"; // Aplicar desfoque Gaussiano ao preenchimento
+                    context.fillRect(backgroundX, backgroundY + 10, backgroundWidth, backgroundHeight + 10);
+
+                    // Desenhar o texto
+                    context.fillStyle = "#000000"; // Cor do texto
+                    context.filter = "none"; // Remover o filtro de desfoque
+                    lines.forEach((text, index) => {
+                        const lineY = cardEffectY + (index + 1) * lineHeight;
+                        context.fillText(text, cardEffectX, lineY);
+                    });
+                }
+
+                // Security Background 
+                context.fillStyle = color || 'black';
+                const securityBackgroundHeight = 75;
+                const securityBackgroundWidth = 305;
+                const securityBackgroundX = 100;
+                const securityBackgroundY = 500
+                context.fillRect(securityBackgroundX, securityBackgroundY, securityBackgroundWidth, securityBackgroundHeight);
+
+
+                context.fillStyle = color || 'black';
+                const tamerNameBackgroundHeight = 37;
+                const tamerNameBackgroundWidth = 367;
+                const tamerNameBackgroundX = 35;
+                const tamerNameBackgroundY = 449
+                context.fillRect(tamerNameBackgroundX, tamerNameBackgroundY, tamerNameBackgroundWidth, tamerNameBackgroundHeight);
+
+                // Card Name
+                context.font = "20px Arial"; // Estilo da fonte e tamanho
+                context.textAlign = "center"; // Alinhamento do texto centralizado
+                const cardName = cardValue.name;
+                let cardNameY = 475
+
+
+                context.lineWidth = 1; // Largura da borda
+                context.strokeText(cardName, cardEffectX, cardNameY); // Desenhar a borda
+                context.fillText(cardName, cardEffectX, cardNameY);
+                if (cardValue.color === "Yellow") {
+                    context.fillStyle = "#040404"; // Cor do texto
+                } else {
+                    context.fillStyle = "#ffffff"; // Cor do texto
+                }
+                context.fillText(cardName, cardEffectX, cardNameY);
+
+                // Card number
+                const cardnumber = cardValue.cardnumber;
+                const cardnumberX = 361;
+                const cardnumberY = 458
+                context.font = "10px Helvetica";
+                context.textAlign = "center";
+                context.fillStyle = "#ffffff";
+                context.strokeStyle = "#000";
+                context.lineWidth = 2;
+                context.strokeText(cardnumber, cardnumberX, cardnumberY);
+                context.fillText(cardnumber, cardnumberX, cardnumberY);
+                context.textAlign = "center";
+
+                // Card soureeffect
+                if (cardValue.soureeffect !== "") {
+                    context.font = "bold 15px Arial"; // Estilo da fonte e tamanho
+                    context.textAlign = "center"; // Alinhamento do texto centralizado
+
+                    const cardsoureeffect = cardValue.soureeffect;
+                    let cardsoureeffectX = 250; // Posição x do texto (centro do canvas)
+                    let cardsoureeffectY = 505; // Posição y do texto (centro do canvas)
+                    let maxLineWidth = 310; // Largura máxima para cada linha de texto
+                    const lineHeight = 16; // Altura da linha de texto
+
+                    // Quebra automática de texto
+                    let line = "";
+                    let lines = [];
+
+                    const words = cardsoureeffect.split(" ");
+                    for (let i = 0; i < words.length; i++) {
+                        const testLine = line + words[i] + " ";
+                        const testLineWidth = context.measureText(testLine).width;
+
+                        if (testLineWidth > maxLineWidth) {
+                            lines.push(line.trim());
+                            line = words[i] + " ";
+                        } else {
+                            line = testLine;
+                        }
+                    }
+                    lines.push(line.trim());
+
+                    // Posição da base do texto fornecida por você (ajuste conforme necessário)
+                    const basePositionY = cardsoureeffectY;
+
+                    // Ajustar a posição y do texto para alinhar por baixo
+                    const cardEffectHeight = lines.length * lineHeight;
+                    const cardEffectY = 496;
+
+                    // Desenhar o texto
+                    if (cardValue.color === "Yellow" || cardValue.color === "White" || cardValue.color === "Blue") {
+                        context.fillStyle = "#020202";
+                    } else {
+                        context.fillStyle = "#ffffff"; // Cor do texto
+                    }
+
+                    lines.forEach((text, index) => {
+                        const lineY = cardEffectY + (index + 1) * lineHeight;
+                        context.fillText(text, cardsoureeffectX, lineY);
+                    });
+                }
+
+
+
+
+                context.font = "7px Helvetica";
+                context.textAlign = "center";
+                context.fillStyle = "#ffffff";
+                context.lineWidth = 2;
+                context.textAlign = "right";
+
+            } else if (cardValue.type === "Option") {
+
+
+                const cardEffect = cardValue.cardEffect;
+                const cardEffectX = canvas.width / 2; // Posição x do texto (centro do canvas)
+
+                // Quebra automática de texto
+                const maxLineWidth = 377; // Largura máxima para cada linha de texto
+                const lineHeight = 16; // Altura da linha de texto
+                const words = cardEffect.split(" ");
+                let line = "";
+                let lines = [];
+
+                for (let i = 0; i < words.length; i++) {
+                    const testLine = line + words[i] + " ";
+                    const testLineWidth = context.measureText(testLine).width;
+
+                    if (testLineWidth > maxLineWidth) {
+                        lines.push(line.trim());
+                        line = words[i] + " ";
+                    } else {
+                        line = testLine;
+                    }
+                }
+                lines.push(line.trim());
+
+                // Ajustar a posição y do texto para alinhar por baixo
+                const cardEffectHeight = lines.length * lineHeight;
+                const cardEffectY = 320;
+
+                if (cardEffect.trim() !== "") {
+                    // Calcular as dimensões do background
+                    const backgroundWidth = maxLineWidth;
+                    const backgroundHeight = cardEffectHeight + lineHeight;
+
+                    // Desenhar o background com efeito de desfoque
+                    const backgroundX = cardEffectX - backgroundWidth / 2;
+                    const backgroundY = cardEffectY - lineHeight;
+                    context.fillStyle = "rgba(255, 255, 255, 0.9)"; // Cor preta com 90% de transparência
+                    context.filter = "blur(5px)"; // Aplicar desfoque Gaussiano ao preenchimento
+                    context.fillRect(backgroundX, backgroundY + 10, backgroundWidth, backgroundHeight + 10);
+
+                    // Desenhar o texto
+                    context.fillStyle = "#000000"; // Cor do texto
+                    context.filter = "none"; // Remover o filtro de desfoque
+                    lines.forEach((text, index) => {
+                        const lineY = cardEffectY + (index + 1) * lineHeight;
+                        context.fillText(text, cardEffectX, lineY);
+                    });
+                }
+
+
+                context.fillStyle = color || "black";
+                const textHeight = lines.length * lineHeight;
+                const padding = 15; // Espaçamento interno
+                const backgroundHeight = 40;
+                const backgroundWidth = 367;
+                const backgroundX = 35;
+                const backgroundY = 449;
+                context.fillRect(backgroundX, backgroundY, backgroundWidth, backgroundHeight);
+
+                // Card Name
+                context.font = "20px Arial"; // Estilo da fonte e tamanho
+                context.textAlign = "center"; // Alinhamento do texto centralizado
+                const cardName = cardValue.name;
+                let cardNameY = 475
+
+
+                if (cardValue.color === "Yellow") {
+                    context.fillStyle = "#000000"; // Cor do texto
+                } else {
+                    context.fillStyle = "#ffffff"; // Cor do texto
+                }
+                context.lineWidth = 1; // Largura da borda
+                context.strokeText(cardName, cardEffectX, cardNameY); // Desenhar a borda
+                context.fillText(cardName, cardEffectX, cardNameY);
+
+
+
+                context.fillText(cardName, cardEffectX, cardNameY);
+
+                // Card play_cost
+                // context.font = "40px Helvetica"; // Estilo da fonte e tamanho
+                // context.textAlign = "center"; // Alinhamento do texto centralizado
+                // const play_cost = cardValue.play_cost;
+                // const play_costY = 66; // Posição y do texto (abaixo do cardEffect)
+                // const play_costX = 53; // Posição y do texto (abaixo do cardEffect)
+                // context.fillStyle = "#ffffff"; // Cor do texto
+                // context.strokeStyle = "#000"; // Cor da borda
+                // context.lineWidth = 4; // Largura da borda
+                // context.strokeText(play_cost, play_costX, play_costY); // Desenhar a borda
+                // context.fillText(play_cost, play_costX, play_costY);
+                // context.textAlign = "center";
+
+                // Card number
+                const cardnumber = cardValue.cardnumber;
+                const cardnumberX = 361;
+                const cardnumberY = 458
+                context.font = "10px Helvetica";
+                context.textAlign = "center";
+                context.fillStyle = "#ffffff";
+                context.strokeStyle = "#000";
+                context.lineWidth = 2;
+                context.strokeText(cardnumber, cardnumberX, cardnumberY);
+                context.fillText(cardnumber, cardnumberX, cardnumberY);
+                context.textAlign = "center";
+
+
+                context.fillStyle = color || 'black';
+                const optionbackgroundHeight = 75;
+                const optionbackgroundWidth = 295;
+                const optionbackgroundX = 100;
+                const optionbackgroundY = 500
+                context.fillRect(optionbackgroundX, optionbackgroundY, optionbackgroundWidth, optionbackgroundHeight);
+
+
+                // Option Security
+                if (cardValue.soureeffect !== "") {
+                    context.font = "bold 15px Arial"; // Estilo da fonte e tamanho
+                    context.textAlign = "center"; // Alinhamento do texto centralizado
+
+                    const cardsoureeffect = cardValue.soureeffect;
+                    let cardsoureeffectX = 250; // Posição x do texto (centro do canvas)
+                    let cardsoureeffectY = 525; // Posição y do texto (centro do canvas)
+                    let maxLineWidth = 310; // Largura máxima para cada linha de texto
+                    const lineHeight = 16; // Altura da linha de texto
+
+                    // Quebra automática de texto
+                    let line = "";
+                    let lines = [];
+
+                    const words = cardsoureeffect.split(" ");
+                    for (let i = 0; i < words.length; i++) {
+                        const testLine = line + words[i] + " ";
+                        const testLineWidth = context.measureText(testLine).width;
+
+                        if (testLineWidth > maxLineWidth) {
+                            lines.push(line.trim());
+                            line = words[i] + " ";
+                        } else {
+                            line = testLine;
+                        }
+                    }
+                    lines.push(line.trim());
+
+
+                    // Posição da base do texto fornecida por você (ajuste conforme necessário)
+                    const basePositionY = cardsoureeffectY;
+
+                    // Ajustar a posição y do texto para alinhar por baixo
+                    const cardEffectHeight = lines.length * lineHeight;
+                    const cardEffectY = 500;
+
+                    // Desenhar o texto
+                    if (cardValue.color === "Yellow" || cardValue.color === "White" || cardValue.color === "Blue") {
+                        context.fillStyle = "#020202";
+                    } else {
+                        context.fillStyle = "#ffffff"; // Cor do texto
+                    }
+
+                    lines.forEach((text, index) => {
+                        const lineY = cardEffectY + (index + 1) * lineHeight;
+                        context.fillText(text, cardsoureeffectX, lineY);
+                    });
+                }
+
+
+
+
+                context.font = "7px Helvetica";
+                context.textAlign = "center";
+                context.fillStyle = "#ffffff";
+                context.lineWidth = 2;
+                context.textAlign = "right";
+
+            } else if (cardValue.type === "Digi-Egg") {
+
+
+                const cardEffect = cardValue.cardEffect;
+                const cardEffectX = canvas.width / 2; // Posição x do texto (centro do canvas)
+
+                // Quebra automática de texto
+                const maxLineWidth = 377; // Largura máxima para cada linha de texto
+                const lineHeight = 16; // Altura da linha de texto
+                const words = cardEffect.split(" ");
+                let line = "";
+                let lines = [];
+
+                for (let i = 0; i < words.length; i++) {
+                    const testLine = line + words[i] + " ";
+                    const testLineWidth = context.measureText(testLine).width;
+
+                    if (testLineWidth > maxLineWidth) {
+                        lines.push(line.trim());
+                        line = words[i] + " ";
+                    } else {
+                        line = testLine;
+                    }
+                }
+                lines.push(line.trim());
+
+                // Posição da base do texto fornecida por você (ajuste conforme necessário)
+                let basePositionY = 415
+
+
+                // Ajustar a posição y do texto para alinhar por baixo
+                const cardEffectHeight = lines.length * lineHeight;
+                const cardEffectY = basePositionY - cardEffectHeight;
+
+                if (cardEffect.trim() !== "") {
+                    // Calcular as dimensões do background
+                    const backgroundWidth = maxLineWidth;
+                    const backgroundHeight = cardEffectHeight + lineHeight;
+
+                    // Desenhar o background com efeito de desfoque
+                    const backgroundX = cardEffectX - backgroundWidth / 2;
+                    const backgroundY = cardEffectY - lineHeight;
+                    context.fillStyle = "rgba(255, 255, 255, 0.9)"; // Cor preta com 90% de transparência
+                    context.filter = "blur(5px)"; // Aplicar desfoque Gaussiano ao preenchimento
+                    context.fillRect(backgroundX, backgroundY + 10, backgroundWidth, backgroundHeight + 10);
+
+                    // Desenhar o texto
+                    context.fillStyle = "#000000"; // Cor do texto
+                    context.filter = "none"; // Remover o filtro de desfoque
+                    lines.forEach((text, index) => {
+                        const lineY = cardEffectY + (index + 1) * lineHeight;
+                        context.fillText(text, cardEffectX, lineY);
+                    });
+                }
+
+                // Card level
+                const level = cardValue.level;
+                const levelX = 72;
+                const levelY = 487;
+
+                context.font = "30px Helvetica";
+                context.textAlign = "center";
+                context.fillStyle = "#ffffff";
+                context.strokeStyle = "#0000002f";
+                context.lineWidth = 2;
+                context.strokeText(level, levelX, levelY);
+                context.fillText(level, levelX, levelY);
+                context.textAlign = "center";
+
+
+                // Card Name
+                context.font = "20px Arial"; // Estilo da fonte e tamanho
+                context.textAlign = "center"; // Alinhamento do texto centralizado
+                const cardName = cardValue.name;
+                let cardNameY = 475
+
+
+                context.lineWidth = 1; // Largura da borda
+                context.strokeText(cardName, cardEffectX, cardNameY); // Desenhar a borda
+                context.fillText(cardName, cardEffectX, cardNameY);
+
+
+                if (cardValue.color === "Yellow") {
+                    context.fillStyle = "#000000"; // Cor do texto
+                } else {
+                    context.fillStyle = "#ffffff"; // Cor do texto
+                }
+                context.fillText(cardName, cardEffectX, cardNameY);
+
+                // Card number
+                const cardnumber = cardValue.cardnumber;
+                const cardnumberX = 361;
+                const cardnumberY = 465
+                context.font = "10px Helvetica";
+                context.textAlign = "center";
+                context.fillStyle = "#ffffff";
+                context.strokeStyle = "#000";
+                context.lineWidth = 2;
+                context.strokeText(cardnumber, cardnumberX, cardnumberY);
+                context.fillText(cardnumber, cardnumberX, cardnumberY);
+                context.textAlign = "center";
+
+                // Card soureeffect
+                if (cardValue.soureeffect !== "") {
+                    context.font = "bold 15px Arial"; // Estilo da fonte e tamanho
+                    context.textAlign = "center"; // Alinhamento do texto centralizado
+
+                    const cardsoureeffect = cardValue.soureeffect;
+                    let cardsoureeffectX = 215; // Posição x do texto (centro do canvas)
+                    let cardsoureeffectY = 505; // Posição y do texto (centro do canvas)
+                    let maxLineWidth = 380; // Largura máxima para cada linha de texto
+                    const lineHeight = 16; // Altura da linha de texto
+
+                    // Quebra automática de texto
+                    let line = "";
+                    let lines = [];
+
+                    const words = cardsoureeffect.split(" ");
+                    for (let i = 0; i < words.length; i++) {
+                        const testLine = line + words[i] + " ";
+                        const testLineWidth = context.measureText(testLine).width;
+
+                        if (testLineWidth > maxLineWidth) {
+                            lines.push(line.trim());
+                            line = words[i] + " ";
+                        } else {
+                            line = testLine;
+                        }
+                    }
+                    lines.push(line.trim());
+
+                    const cardEffectY = 500;
+
+                    // Desenhar o texto
+                    if (cardValue.color === "Yellow" || cardValue.color === "White" || cardValue.color === "Blue") {
+                        context.fillStyle = "#020202";
+                    } else {
+                        context.fillStyle = "#ffffff"; // Cor do texto
+                    }
+
+                    lines.forEach((text, index) => {
+                        const lineY = cardEffectY + (index + 1) * lineHeight;
+                        context.fillText(text, cardsoureeffectX, lineY);
+                    });
+                }
+
+                context.font = "7px Helvetica";
+                context.textAlign = "center";
+                context.fillStyle = "#ffffff";
+                context.lineWidth = 2;
+                context.textAlign = "right";
+
+                // Digimon Data
+                const digimondata = `${cardValue.stage}   |   ${cardValue.attribute}     |   ${cardValue.digi_type}`;
+                const digimondataX = 322;
+                const digimondataY = 491;
+
+                context.font = "7px Helvetica";
+                context.textAlign = "center";
+                context.fillStyle = "#ffffff";
+                context.lineWidth = 2;
+                context.strokeText(digimondata, digimondataX, digimondataY);
+                context.fillText(digimondata, digimondataX, digimondataY);
+                context.textAlign = "right";
+
+            }
+
         };
     }, [cardImage, cardValue, fontSize]);
 
