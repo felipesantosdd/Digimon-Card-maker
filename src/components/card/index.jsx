@@ -307,7 +307,7 @@ export function CardComponent() {
                 if (cardValue.rare === false) {
                     cardEffectY = 350;
                 } else {
-                    cardEffectY = 407
+                    cardEffectY = 416
                 }
 
 
@@ -616,7 +616,7 @@ export function CardComponent() {
                 context.lineWidth = 1; // Largura da borda
                 context.strokeText(cardName, cardEffectX, cardNameY); // Desenhar a borda
                 context.fillText(cardName, cardEffectX, cardNameY);
-                if (cardValue.color === "Yellow") {
+                if (cardValue.color === "Yellow" || cardValue.color === "White") {
                     context.fillStyle = "#040404"; // Cor do texto
                 } else {
                     context.fillStyle = "#ffffff"; // Cor do texto
