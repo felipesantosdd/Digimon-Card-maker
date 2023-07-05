@@ -1,27 +1,20 @@
-
+import React, { useContext, useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { Context } from '../../provider';
-import { useContext, useEffect, useState } from 'react';
+import Select from '@mui/material/Select';
 import {
     Button, Checkbox, FormControlLabel, FormLabel, Radio, RadioGroup, TextField
 } from '@mui/material';
 import { getDigimonService } from '../../service/getDigimon';
 import { Container, Options } from './styled.js';
-import backImage from "../../img/Back.png"
+import backImage from "../../img/Back.png";
+import { translateEffect } from '../../service/translate';
+import { Context } from '../../provider';
 
 export function InfoComponent() {
-
-
-
-
     const { cardType, setCardType, setCardValue, fontSize, setFontSize } = useContext(Context);
-
-
-
     const [cardData, setCardData] = useState({
         name: '',
         dp: 0,
@@ -42,7 +35,6 @@ export function InfoComponent() {
         url: 'https://img.mypcards.com/img/9/1595/digimon_bt5_001_p1/digimon_bt5_001_p1_en.jpg'
     });
 
-
     const handleChangeCardData = (event) => {
         const { name, value } = event.target;
         const updatedCardData = { ...cardData, [name]: value };
@@ -58,8 +50,6 @@ export function InfoComponent() {
     const handleFontSize = (event) => {
         const font = event.target.value;
         setFontSize(font)
-        console.log(font)
-
     };
 
     const handleCheckboxChange = (event) => {
@@ -74,21 +64,24 @@ export function InfoComponent() {
 
 
     async function getDigimon(code) {
-
         try {
             const response = await getDigimonService(code.target.value);
             const digimonData = response.data[0];
 
-            setCardData((prevCardValue) => ({
-                ...prevCardValue,
+            const translatedMainEffect = await translateEffect(digimonData.maineffect);
+            const translatedSourceEffect = await translateEffect(digimonData.soureeffect);
+            const erro = 'NO QUERY SPECIFIED. EXAMPLE REQUEST: GET?Q=HELLO&LANGPAIR=EN|IT'
+
+            const updatedCardData = {
+                ...cardData,
                 name: digimonData.name,
                 color: digimonData.color,
                 dp: Number(digimonData.dp),
                 play_cost: digimonData.play_cost,
                 evolution_cost: digimonData.evolution_cost,
                 level: digimonData.level,
-                cardEffect: digimonData.maineffect || '',
-                soureeffect: digimonData.soureeffect || '',
+                cardEffect: translatedMainEffect === erro ? '' : translatedMainEffect || '',
+                soureeffect: translatedSourceEffect === erro ? '' : translatedSourceEffect || '',
                 cardnumber: digimonData.cardnumber,
                 attribute: digimonData.attribute,
                 type: digimonData.type,
@@ -96,13 +89,10 @@ export function InfoComponent() {
                 digi_type: digimonData.digi_type,
                 digimon_level_cost: digimonData.level - 1,
                 url: `https://en.digimoncard.com/images/cardlist/card/${digimonData.cardnumber}.png`
-            }));
+            };
 
-            setCardValue(cardData)
-            console.log({
-                response: digimonData,
-                data: cardData
-            })
+            setCardData(updatedCardData);
+            setCardValue(updatedCardData);
         } catch (error) {
             console.error(error.response.data);
         }
@@ -110,6 +100,7 @@ export function InfoComponent() {
 
     useEffect(() => {
         setCardValue(cardData)
+
     }, [cardData])
 
     var valorAreaTransferencia = ""; // Variável para armazenar o valor atual da área de transferência
@@ -161,20 +152,6 @@ export function InfoComponent() {
         }}>
             <Container>
                 <Options>
-
-                    {/* <Select
-                        label="Tipo de Card"
-                        defaultValue={'Digimon'}
-                        onChange={(event) => handleChangeCardData(event)}
-                        name='type'
-                        value={cardData.type}
-                    >
-                        <MenuItem value={'Digimon'}>Digimon</MenuItem>
-                        <MenuItem value={'Option'}>Option</MenuItem>
-                        <MenuItem value={'Tamer'}>Tamer</MenuItem>
-                        <MenuItem value={'Digi-Egg'}>Digi-Egg</MenuItem>
-                    </Select> */}
-
                     <TextField
                         defaultValue={''}
                         label="Codigo do Card"
@@ -183,8 +160,6 @@ export function InfoComponent() {
                         onChange={(event) => getDigimon(event)}
                         style={{ width: '30%' }}
                     />  <Button onClick={() => copiarTextoParaAreaTransferencia(cardData.cardnumber)}>Copiar</Button>
-
-
 
                     <FormControlLabel
                         control={<Checkbox checked={cardData.rare} name='rare' value={cardData.rare} onChange={(event) => handleCheckboxChange(event)} />}
@@ -202,64 +177,6 @@ export function InfoComponent() {
                         noValidate
                         autoComplete="off"
                     >
-                        {/* <RadioGroup
-                            row
-                            name="color"
-                            display="flex"
-                            onChange={(event) => handleChangeCardData(event)}
-                        >
-                            <FormControlLabel name='color' value="Black" control={<Radio />} label="Black" />
-                            <FormControlLabel name='color' value="Red" control={<Radio />} label="Red" />
-                            <FormControlLabel name='color' value="Yellow" control={<Radio />} label="Yellow" />
-                            <FormControlLabel name='color' value="Blue" control={<Radio />} label="Blue" />
-                            <FormControlLabel name='color' value="Purple" control={<Radio />} label="Purple" />
-                            <FormControlLabel name='color' value="White" control={<Radio />} label="White" />
-                            <FormControlLabel name='color' value="Green" control={<Radio />} label="Green" />
-
-                        </RadioGroup> */}
-
-
-                        {/* <TextField
-                            defaultValue={''}
-                            label="Custo"
-                            variant="standard"
-                            size="small"
-                            onChange={(event) => handleChangeCardData(event)}
-                            style={{ width: '45%' }}
-                            name='play_cost'
-                            value={cardData.play_cost}
-                        /> */}
-                        {/* <TextField
-                            defaultValue={0}
-                            label="DP"
-                            variant="standard"
-                            size="small"
-                            onChange={(event) => handleChangeCardData(event)}
-                            style={{ width: '45%' }}
-                            name='dp'
-                            type='number'
-                            value={cardData.dp}
-                        /> */}
-                        {/* <TextField
-                            defaultValue={''}
-                            label="Custo de Evolução"
-                            variant="standard"
-                            size="small"
-                            onChange={(event) => handleChangeCardData(event)}
-                            style={{ width: '45%' }}
-                            name='evolution_cost'
-                            value={cardData.evolution_cost}
-                        />
-                        <TextField
-                            defaultValue={''}
-                            label="Digimon Level"
-                            variant="standard"
-                            size="small"
-                            onChange={(event) => handleChangeCardData(event)}
-                            style={{ width: '45%' }}
-                            name='digimon_level_cost'
-                            value={cardData.digimon_level_cost}
-                        /> */}
                         <TextField
                             defaultValue={''}
                             label="Link da Imagem"
@@ -300,26 +217,7 @@ export function InfoComponent() {
                             name='name'
                             value={cardData.name}
                         />
-                        {/* <TextField
-                            defaultValue={''}
-                            label="Level do Digimon"
-                            variant="standard"
-                            size="small"
-                            onChange={(event) => handleChangeCardData(event)}
-                            style={{ width: '45%' }}
-                            name='level'
-                            value={cardData.level}
-                        /> */}
-                        {/* <TextField
-                            defaultValue={''}
-                            label="Codigo do Card"
-                            variant="standard"
-                            size="small"
-                            onChange={(event) => handleChangeCardData(event)}
-                            style={{ width: '45%' }}
-                            name='cardnumber'
-                            value={cardData.cardnumber}
-                        /> */}
+
                         <TextField
                             defaultValue={''}
                             label="Forma"

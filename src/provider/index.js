@@ -28,6 +28,8 @@ export function Provider({ children }) {
         url: 'https://images.digimoncard.io/images/card-creator/card/common_red_digi.png'
     })
 
+
+
     return (
         <Context.Provider value={{
             cardType,
