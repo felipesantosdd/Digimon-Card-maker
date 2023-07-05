@@ -1,11 +1,10 @@
 import { useRef, useEffect } from "react";
-import { saveAs } from "file-saver";
 import { Button } from "@mui/material";
 import { useContext } from "react";
 import { Context } from "../../provider";
 
 
-import { Back, Card, Card2, Front } from "./styled";
+import { Card } from "./styled";
 
 
 
@@ -68,8 +67,6 @@ function drawDigimonCard(cardValue, canvas, context, color) {
 
     // Blackground do nome do card
     context.fillStyle = color || "black";
-    const textHeight = lines.length * lineHeight;
-    const padding = 15; // Espaçamento interno
     const backgroundHeight = 30;
     const backgroundWidth = 290;
     const backgroundX = 114;
@@ -255,7 +252,6 @@ function drawDigiEggCard(cardValue, canvas, context, color) {
         context.font = "bold 15px Arial";
         context.textAlign = "center";
         const cardsoureeffectX = 255;
-        const cardsoureeffectY = 505;
         const maxLineWidth = 300;
         let line = "";
         let lines = [];
@@ -325,9 +321,6 @@ function drawTamerCard(cardValue, canvas, context, color) {
         }
     }
     lines.push(line.trim());
-
-    // Posição da base do texto fornecida por você (ajuste conforme necessário)
-    let basePositionY = 415;
 
     // Ajustar a posição y do texto para alinhar por baixo
     const cardEffectHeight = lines.length * lineHeight;
@@ -403,7 +396,6 @@ function drawTamerCard(cardValue, canvas, context, color) {
 
         const cardsoureeffect = cardValue.soureeffect;
         let cardsoureeffectX = 250; // Posição x do texto (centro do canvas)
-        let cardsoureeffectY = 505; // Posição y do texto (centro do canvas)
         let maxLineWidth = 310; // Largura máxima para cada linha de texto
 
         // Quebra automática de texto
@@ -423,12 +415,6 @@ function drawTamerCard(cardValue, canvas, context, color) {
             }
         }
         lines.push(line.trim());
-
-        // Posição da base do texto fornecida por você (ajuste conforme necessário)
-        const basePositionY = cardsoureeffectY;
-
-        // Ajustar a posição y do texto para alinhar por baixo
-        const cardEffectHeight = lines.length * lineHeight;
         const cardEffectY = 496;
 
         // Desenhar o texto
@@ -449,7 +435,6 @@ function drawTamerCard(cardValue, canvas, context, color) {
     context.fillStyle = "#ffffff";
     context.lineWidth = 2;
 }
-
 
 function drawOptionCard(cardValue, canvas, context, color) {
     const cardEffect = cardValue.cardEffect;
@@ -501,8 +486,6 @@ function drawOptionCard(cardValue, canvas, context, color) {
     }
 
     context.fillStyle = color || "black";
-    const textHeight = lines.length * lineHeight;
-    const padding = 15; // Espaçamento interno
     const backgroundHeight = 40;
     const backgroundWidth = 367;
     const backgroundX = 35;
@@ -572,11 +555,7 @@ function drawOptionCard(cardValue, canvas, context, color) {
         }
         lines.push(line.trim());
 
-        // Posição da base do texto fornecida por você (ajuste conforme necessário)
-        const basePositionY = cardsoureeffectY;
-
         // Ajustar a posição y do texto para alinhar por baixo
-        const cardEffectHeight = lines.length * lineHeight;
         const cardEffectY = 500;
 
         // Desenhar o texto
@@ -603,23 +582,6 @@ function drawOptionCard(cardValue, canvas, context, color) {
 export function CardComponent() {
     const { cardValue, fontSize } = useContext(Context);
     const canvasRef = useRef(null);
-
-    const saveCardImage = () => {
-        const canvas = canvasRef.current;
-        const dataURL = canvas.toDataURL("image/png");
-
-        // Create an anchor element to trigger the download
-        const downloadLink = document.createElement("a");
-        downloadLink.href = dataURL;
-        downloadLink.download = "card_image.png";
-
-        // Trigger the download
-        document.body.appendChild(downloadLink);
-        downloadLink.click();
-
-        // Clean up
-        document.body.removeChild(downloadLink);
-    };
 
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -688,7 +650,7 @@ export function CardComponent() {
     return (
         <Card>
             <canvas ref={canvasRef}></canvas>
-            <Button onClick={saveCardImage}>Save Image</Button>
+            <Button >Save Image</Button>
         </Card>
     );
 }
