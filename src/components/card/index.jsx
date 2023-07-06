@@ -43,7 +43,7 @@ function drawDigimonCard(cardValue, canvas, context, color) {
         // Desenhar o background com efeito de desfoque
         const backgroundX = cardEffectX - backgroundWidth / 2 + 4;
         const backgroundY = cardEffectY - lineHeight + 5;
-        context.fillStyle = "rgba(255, 255, 255, 0.9)"; // Cor preta com 90% de transparência
+        context.fillStyle = "rgba(255, 255, 255, 0.9)"; // Cor preta com 90% dyarn e transparência
         context.filter = "blur(2px)"; // Aplicar desfoque Gaussiano ao preenchimento
         context.fillRect(backgroundX, backgroundY + 10, backgroundWidth, backgroundHeight + 10);
 
@@ -73,6 +73,7 @@ function drawDigimonCard(cardValue, canvas, context, color) {
     const backgroundY = cardValue.rare ? 535 : 470;
     context.fillRect(backgroundX, backgroundY, backgroundWidth, backgroundHeight);
 
+
     // Card Name
     context.font = "20px Arial"; // Estilo da fonte e tamanho
     context.textAlign = "center"; // Alinhamento do texto centralizado
@@ -82,6 +83,16 @@ function drawDigimonCard(cardValue, canvas, context, color) {
     context.strokeText(cardName, cardEffectX, cardNameY); // Desenhar a borda
     context.fillStyle = cardValue.color === "Yellow" || cardValue.color === "White" ? "#090909" : "#fefefe";
     context.fillText(cardName, cardEffectX, cardNameY);
+
+    // Blackground Legado
+    context.fillStyle = color || "black";
+    const legadoBackgroundHeight = 70;
+    const legadoBackgroundWidth = 12;
+    const legadoBackgroundX = 30;
+    const legadoBackgroundY = 525
+    context.fillRect(legadoBackgroundX, legadoBackgroundY, legadoBackgroundWidth, legadoBackgroundHeight);
+
+
 
     // Card number
     const cardnumber = cardValue.cardnumber;
