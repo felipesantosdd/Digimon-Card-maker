@@ -68,9 +68,40 @@ export function InfoComponent() {
             const response = await getDigimonService(code.target.value);
             const digimonData = response.data[0];
 
-            const translatedMainEffect = await translateEffect(digimonData.maineffect);
-            const translatedSourceEffect = await translateEffect(digimonData.soureeffect);
-            const erro = 'NO QUERY SPECIFIED. EXAMPLE REQUEST: GET?Q=HELLO&LANGPAIR=EN|IT'
+            const maxCharacterLimit = 500;
+            const erro = 'NO QUERY SPECIFIED. EXAMPLE REQUEST: GET?Q=HELLO&LANGPAIR=EN|IT';
+
+            const mainEffect = digimonData.maineffect;
+            const sourceEffect = digimonData.soureeffect;
+
+            let translatedMainEffect = '';
+            let translatedSourceEffect = '';
+
+            // Traduzir o campo maineffect em partes
+            const mainEffectParts = [];
+            for (let i = 0; i < Math.ceil(mainEffect.length / maxCharacterLimit); i++) {
+                const start = i * maxCharacterLimit;
+                const end = start + maxCharacterLimit;
+                const part = mainEffect.substring(start, end);
+                const translatedPart = await translateEffect(part);
+                translatedMainEffect += translatedPart;
+                mainEffectParts.push(translatedPart);
+            }
+
+            // Traduzir o campo soureeffect em partes
+            const sourceEffectParts = [];
+            for (let i = 0; i < Math.ceil(sourceEffect.length / maxCharacterLimit); i++) {
+                const start = i * maxCharacterLimit;
+                const end = start + maxCharacterLimit;
+                const part = sourceEffect.substring(start, end);
+                const translatedPart = await translateEffect(part);
+                translatedSourceEffect += translatedPart;
+                sourceEffectParts.push(translatedPart);
+            }
+
+            // Remover parênteses e conteúdo dentro deles
+            translatedMainEffect = translatedMainEffect.replace(/\([^()]*\)/g, '');
+            translatedSourceEffect = translatedSourceEffect.replace(/\([^()]*\)/g, '');
 
             const updatedCardData = {
                 ...cardData,
@@ -97,6 +128,7 @@ export function InfoComponent() {
             console.error(error.response.data);
         }
     }
+
 
     useEffect(() => {
         setCardValue(cardData)
