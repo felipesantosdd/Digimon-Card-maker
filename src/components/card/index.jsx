@@ -38,7 +38,7 @@ function drawDigimonCard(cardValue, canvas, context, color) {
         // Calcular as dimensões do background
         const cardEffectHeight = lines.length * lineHeight;
         const backgroundWidth = maxLineWidth;
-        const backgroundHeight = cardEffectHeight + lineHeight;
+        const backgroundHeight = cardValue.rare ? 105 : 96;
 
         // Desenhar o background com efeito de desfoque
         const backgroundX = cardEffectX - backgroundWidth / 2 + 4;
