@@ -85,13 +85,14 @@ function drawDigimonCard(cardValue, canvas, context, color) {
     context.fillText(cardName, cardEffectX, cardNameY);
 
     // Blackground Legado
-    context.fillStyle = color || "black";
-    const legadoBackgroundHeight = 70;
-    const legadoBackgroundWidth = 12;
-    const legadoBackgroundX = 30;
-    const legadoBackgroundY = 525
-    context.fillRect(legadoBackgroundX, legadoBackgroundY, legadoBackgroundWidth, legadoBackgroundHeight);
-
+    if (cardValue.rare === false) {
+        context.fillStyle = color || "black";
+        const legadoBackgroundHeight = 70;
+        const legadoBackgroundWidth = 12;
+        const legadoBackgroundX = 30;
+        const legadoBackgroundY = 525
+        context.fillRect(legadoBackgroundX, legadoBackgroundY, legadoBackgroundWidth, legadoBackgroundHeight);
+    }
 
 
     // Card number
@@ -208,6 +209,15 @@ function drawDigiEggCard(cardValue, canvas, context, color) {
     const cardEffectHeight = lines.length * lineHeight;
     const cardEffectY = basePositionY - cardEffectHeight;
 
+    // Blackground Legado
+    context.fillStyle = color || "black";
+    const legadoBackgroundHeight = 70;
+    const legadoBackgroundWidth = 12;
+    const legadoBackgroundX = 30;
+    const legadoBackgroundY = 505
+    context.fillRect(legadoBackgroundX, legadoBackgroundY, legadoBackgroundWidth, legadoBackgroundHeight);
+
+
     if (cardEffect.trim() !== "") {
         // Calcular as dimensões do background
         const backgroundWidth = maxLineWidth;
@@ -231,6 +241,8 @@ function drawDigiEggCard(cardValue, canvas, context, color) {
             context.fillText(text, cardEffectX, lineY);
         });
     }
+
+
 
     context.fillStyle = color || "black";
 
